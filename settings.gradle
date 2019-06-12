@@ -1,0 +1,3 @@
+rootProject.name = 'spring-dk'
+include 'hello-spring'
+
