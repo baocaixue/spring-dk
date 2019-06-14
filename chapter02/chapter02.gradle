@@ -5,7 +5,7 @@ subprojects {
     /*Task that copies all the dependencies under chapter02/libs */
     task copyDependencies(type: Copy) {
         from configurations.compile
-        into './libs'
+        into 'build/libs'
     }
 
     dependencies {
