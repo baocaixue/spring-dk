@@ -1,3 +1,16 @@
 rootProject.name = 'spring-dk'
-include 'hello-spring'
+include 'chapter02:hello-world'
+
+println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
+        '"Spring Pro, Fifth Edition" ' +
+        ' published by Apress in order to learn and practice with all Spring Web libraries. ')
+
+//we check if the modules have gradle configuration files
+rootProject.children.each { project ->
+    project.buildFileName = "${project.name}.gradle"
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.exists()
+    assert project.buildFile.isFile()
+}
+include 'hello-world'
 

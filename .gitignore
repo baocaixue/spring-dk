@@ -2,6 +2,29 @@
 .idea
 *.iws
 *.ipr
+*.iml
+*/*.iml
 
-#personal
-.gradle
+# Gradle files
+.gradle/
+build/
+*/build/
+gradlew
+gradlew.bat
+
+# Generated files
+*/bin/
+*/gen/
+*/out/
+
+# Log Files
+*.log
+
+#gradle wrapper
+gradle/
+
+#some local files
+*/.settings/
+*/.DS_Store
+.DS_Store
+*/.idea/
