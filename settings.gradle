@@ -14,6 +14,7 @@ include 'chapter03:collections'//复杂一点的注入——集合（map、list�
 include 'chapter03:field-injection'//字段注入
 include 'chapter03:method-injection'//查找方法注入
 include 'chapter03:method-replacement'//方法替换
+include 'chapter03:nesting'//嵌套
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
