@@ -10,7 +10,7 @@ public class FieldInjection {
 
         Singer singer = ctx.getBean("singer", Singer.class);
         singer.sing();
-        
+
         ctx.close();
     }
 }
