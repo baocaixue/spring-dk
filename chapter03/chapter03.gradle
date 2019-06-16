@@ -1,0 +1,16 @@
+subprojects {
+    group 'com.isaac.ch03'
+    apply plugin: 'java'
+
+    /*Task that copies all the dependencies under chapter02/libs */
+    task copyDependencies(type: Copy) {
+        from configurations.compile
+        into 'build/libs'
+    }
+
+    dependencies {
+        compile spring.context, misc.slf4jJcl, misc.logback
+        testCompile testing.junit
+    }
+}
+

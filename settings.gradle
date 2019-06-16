@@ -1,5 +1,13 @@
 rootProject.name = 'spring-dk'
+
 include 'chapter02:hello-world'
+
+include 'chapter03:bean-aliases'
+include 'chapter03:dependency-pull'//依赖拉取
+include 'chapter03:cdl'//上下文依赖查找
+include 'chapter03:constructor-injection'//构造函数依赖注入
+include 'chapter03:setter-injection'//setter依赖注入
+
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Spring Pro, Fifth Edition" ' +
