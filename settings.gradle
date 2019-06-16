@@ -10,6 +10,7 @@ include 'chapter03:setter-injection'//setter依赖注入
 include 'chapter03:bean-autowiring'//自动装配
 include 'chapter03:bean-inheritance'//bean继承
 include 'chapter03:bean-instantiation-mode'//bean实例化模式
+include 'chapter03:collections'//复杂一点的注入——集合（map、list、set、properties）
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
