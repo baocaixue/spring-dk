@@ -30,4 +30,4 @@
 
 ### Note  
 - Chapter03 IOC&&DI  
- - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java) 
+  - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java) 
