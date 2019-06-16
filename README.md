@@ -25,4 +25,9 @@
 | web | 此模块包含在Web应用中使用Spring所需的核心类，包括用于自动加载ApplicationContext功能的类、文件上传支持类以及一些用于执行重复任务（比如从查询字符串解析整数）的有用类  
 | web-reactive | 该模块包含Spring Web Reactive模型的核心接口和类  
 | web-mvc | 该模块包含Spring自己的MVC框架的所有类。如果想要为应用程序使用单独的MVC框架，则不需要此JAR文件中的任何类  
-| webfsocket | 该模块提供对JSR-356（WebSocket的Java API）的支持
+| webfsocket | 该模块提供对JSR-356（WebSocket的Java API）的支持  
+
+
+### Note  
+- Chapter03 IOC&&DI  
+ - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java) 
