@@ -19,7 +19,9 @@ include 'chapter03:nesting'//嵌套
 include 'chapter03:simple-types'//简单类型的注入DI
 
 //Spring配置(补充扩展基本IOC)和Spring Boot
+//*Bean生命周期——bean创建
 include 'chapter04:bean-init-method'//创建bean时执行方法
+include 'chapter04:initializing-bean'//实现InitializingBean接口
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
