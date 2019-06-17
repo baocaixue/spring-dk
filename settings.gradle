@@ -2,6 +2,7 @@ rootProject.name = 'spring-dk'
 
 include 'chapter02:hello-world'
 
+//Spring中引入IOC和
 include 'chapter03:bean-aliases'//bean别名
 include 'chapter03:dependency-pull'//依赖拉取
 include 'chapter03:cdl'//上下文依赖查找
@@ -15,7 +16,10 @@ include 'chapter03:field-injection'//字段注入
 include 'chapter03:method-injection'//查找方法注入
 include 'chapter03:method-replacement'//方法替换
 include 'chapter03:nesting'//嵌套
-include 'chapter03:simple-types'//简单类型的注入
+include 'chapter03:simple-types'//简单类型的注入DI
+
+//Spring配置(补充扩展基本IOC)和Spring Boot
+include 'chapter04:bean-init-method'//创建bean时执行方法
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
