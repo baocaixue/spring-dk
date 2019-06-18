@@ -36,4 +36,21 @@
 
 ### Note  
 - Chapter03 IOC&&DI  
-  - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java) 
+  - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java)   
+  - Bean生命周期——bean创建
+     * `创建解析顺序：Spring首先调用使用了@PostConstruct注解的方法，然后调用afterPropertiesSet()方法，最后调用配置文件中指定的初始化方法`
+     * （1）首先调用构造函数来创建bean
+     * （2）注入依赖项（setter）
+     * （3）现在bean已经存在并提供了依赖项，预初始化的BeanPostProcessor基础结构bean将被查询。这些特定于Spring的基础架构bean，它们在创建后
+      执行bean修改操作。@PostConstruct注解由CommonAnnotationBeanPostProcessor注册，所以该bean将调用使用了@PostConstruct注解的方法。
+      该方法在bean被构建之后，在类被投入使用之前且在bean的实际初始化之前（在afterPropertiesSet()和init-method之前）执行
+     * （4）InitializingBean的afterPropertiesSet()方法在注入依赖之后立即执行。如果BeanFactory设置了提供的所有Bean属性并且满足BeanFactoryAware
+     * 和ApplicationContextAware，将会调用afterPropertiesSet()方法
+     * （5）最后执行init-method属性，这是因为它是bean的实际初始化方法
+  -  Bean生命周期——bean销毁
+     *  当使用封装了DefaultListableBeanFactory接口的ApplicationContext是实现（例如，通过getDefaultListableBeanFactory()方法获取的GenericXmlApplicationContext）时，
+     可以通过调用ConfigurableBeanFactory.destroySingletons()向BeanFactory发出信号，告知销毁所有单例实例。通常，在应用程序关闭时执行此操作，并允许清理bean可能保持打开的任何
+     资源，从而使应用程序可以正常关闭。此外，在该回调中还可以将存储在内存中的任何数据刷新到持久存储库中，并允许bean关闭可能已启动的长时间运行的任何进程。
+     为了让bean接收到destroySingletons()被调用的通知，存在三种选择——方法、实现DisposableBean接口、JSR-250 @PreDestroy注解
+     * `销毁解析顺序：Spring首先调用@PreDestroy注解的方法，然后调用DisposableBean.destroy()，最后调用XML定义中配置的destroy()方法`
+     * [使用关闭钩子](./chapter04/shutdown-hook/src/main/java/com/isaac/ch4/DestructiveBeanWithHook.java)

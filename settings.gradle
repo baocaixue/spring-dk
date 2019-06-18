@@ -23,6 +23,11 @@ include 'chapter03:simple-types'//简单类型的注入DI
 include 'chapter04:bean-init-method'//创建bean时执行方法
 include 'chapter04:initializing-bean'//实现InitializingBean接口
 include 'chapter04:post-construct'//使用JSR-250 @PostConstruct注解
+//*Bean生命周期——bean销毁
+include 'chapter04:initializing-bean-destroy'//销毁时执行一个方法
+include 'chapter04:disposable-bean'//实现DisposableBean接口
+include 'chapter04:post-construct-pre-destroy'//使用JSR-250 @PreDestroy注解
+include 'chapter04:shutdown-hook'//使用关闭钩子
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
