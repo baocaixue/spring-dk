@@ -28,7 +28,9 @@ include 'chapter04:initializing-bean-destroy'//销毁时执行一个方法
 include 'chapter04:disposable-bean'//实现DisposableBean接口
 include 'chapter04:post-construct-pre-destroy'//使用JSR-250 @PreDestroy注解
 include 'chapter04:shutdown-hook'//使用关闭钩子
-
+//*与容器进行交互
+include 'chapter04:bean-name-aware'//获取自己名称的bean，实现BeanNameAware接口
+include 'chapter04:application-context-aware'//使用ApplicationContextAware
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Spring Pro, Fifth Edition" ' +
