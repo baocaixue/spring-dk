@@ -37,6 +37,7 @@
 ### Note  
 - Chapter03 IOC&&DI  
   - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java)   
+- Chapter04 Spring Config && Spring Boot
   - Bean生命周期——bean创建
      * `创建解析顺序：Spring首先调用使用了@PostConstruct注解的方法，然后调用afterPropertiesSet()方法，最后调用配置文件中指定的初始化方法`
      * （1）首先调用构造函数来创建bean
@@ -54,3 +55,5 @@
      为了让bean接收到destroySingletons()被调用的通知，存在三种选择——方法、实现DisposableBean接口、JSR-250 @PreDestroy注解
      * `销毁解析顺序：Spring首先调用@PreDestroy注解的方法，然后调用DisposableBean.destroy()，最后调用XML定义中配置的destroy()方法`
      * [使用关闭钩子](./chapter04/shutdown-hook/src/main/java/com/isaac/ch4/DestructiveBeanWithHook.java)
+  - FactoryBean `创建并注入不能简单地使用new运算符创建的依赖项。FactoryBean是一个Bean，在ApplicationContext中配置，但当Spring使用FactoryBean接口来满足依赖或查找请求时，它并不返回FactoryBean，而是调用FactoryBean.getObject()方法并返回调用结果`
+    * 用途：创建事务代理、JNDI上下文自动获取资源等
