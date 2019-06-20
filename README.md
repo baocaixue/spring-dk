@@ -60,3 +60,16 @@
     | PropertyEditor | 描述 |  
     |---|---  
     | ByteArrayPropertyEditor | 将字符串值换为相应的字节表示形式   
+    | CharacterEditor | 从String值填充Character或char类型的属性   
+    | ClassEditor | 从完全限定的类名转换为Class实例。当使用此PropertyEditor时，请小心在使用GenericXmlApplicationContext时，不要在类名的任何一侧包含任何多多余的空格，这会导致ClassNotFoundException    
+    | CustomBooleanEditor | 将字符串转换为Java Boolean类型  
+    | CustomCollectionEditor | 将源集合（例如，由Spring中util名称空间表示）转换为Collection类型  
+    | CustomDateEditor | 将日期的字符串表示形式转换为java.util.Date值。需要在Spring的ApplicationContext中以所需的日期格式注册CustomDateEditor实现  
+    | FileEditor | 将String文件路径转换为File实例。Spring不检查文件是否存在  
+    | InputStreamEditor | 将资源的字符串表示（例如，使用file:D:/temp/test.txt或classpath:test.txt的文件资源）转换为输入流属性  
+    | LocalEditor | 将语言环境字符串表示形式（如en-GB）转换为java.util.Local实例  
+    | PatternEditor | 将字符串转换为JDK Pattern对象  
+    | PropertiesEditor | 以格式key1=value1 key2=value2 keyn=valuen将字符串转换为配置了相应属性的java.util.Properties实例  
+    | StringTrimmerEditor | 在注入前对字符串值进行修建。需要明确注册该编辑器  
+    | URLEditor | 将URL的字符串表示形式转换为java.net.URL的实例  
+    
