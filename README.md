@@ -54,4 +54,6 @@
      * `销毁解析顺序：Spring首先调用@PreDestroy注解的方法，然后调用DisposableBean.destroy()，最后调用XML定义中配置的destroy()方法`
      * [使用关闭钩子](./chapter04/shutdown-hook/src/main/java/com/isaac/ch4/DestructiveBeanWithHook.java)
   - FactoryBean `创建并注入不能简单地使用new运算符创建的依赖项。FactoryBean是一个Bean，在ApplicationContext中配置，但当Spring使用FactoryBean接口来满足依赖或查找请求时，它并不返回FactoryBean，而是调用FactoryBean.getObject()方法并返回调用结果`
-    * 用途：创建事务代理、JNDI上下文自动获取资源等
+    * 用途：创建事务代理、JNDI上下文自动获取资源等    
+    | PropertyEditor | 描述 |  
+    | --- | --- |
