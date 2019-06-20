@@ -55,5 +55,8 @@
      * [使用关闭钩子](./chapter04/shutdown-hook/src/main/java/com/isaac/ch4/DestructiveBeanWithHook.java)
   - FactoryBean `创建并注入不能简单地使用new运算符创建的依赖项。FactoryBean是一个Bean，在ApplicationContext中配置，但当Spring使用FactoryBean接口来满足依赖或查找请求时，它并不返回FactoryBean，而是调用FactoryBean.getObject()方法并返回调用结果`
     * 用途：创建事务代理、JNDI上下文自动获取资源等    
+  - 属性编辑器 Spring PropertyEditor  
+  
     | PropertyEditor | 描述 |  
-    | --- | --- |
+    |---|---  
+    | ByteArrayPropertyEditor | 将字符串值换为相应的字节表示形式   
