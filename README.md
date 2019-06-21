@@ -33,9 +33,9 @@ Spring5 Advance && Spring Review .
 
 
 ## Note  
-## Chapter03 IOC&&DI  
+## [Chapter03 IOC&&DI](./chapter03)  
   - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java)   
-## Chapter04 Spring Config && Spring Boot
+## [Chapter04 Spring Config && Spring Boot](./chapter04)
   - Bean生命周期——bean创建
      * `创建解析顺序：Spring首先调用使用了@PostConstruct注解的方法，然后调用afterPropertiesSet()方法，最后调用配置文件中指定的初始化方法`
      * （1）首先调用构造函数来创建bean
