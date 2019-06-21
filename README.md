@@ -1,8 +1,8 @@
 # Spring is a wonderful season
 
-`Spring5 Advance && Spring Review` . 
-****
-  declaration: spring-dk refer to pro-spring-5    
+Spring5 Advance && Spring Review . 
+
+  `declaration`: spring-dk refer to pro-spring-5    
 [refer](https://github.com/Apress/pro-spring-5) .  
 
 ****
@@ -32,10 +32,10 @@
 | webfsocket | 该模块提供对JSR-356（WebSocket的Java API）的支持  
 
 
-### Note  
-- Chapter03 IOC&&DI  
+## Note  
+## Chapter03 IOC&&DI  
   - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java)   
-- Chapter04 Spring Config && Spring Boot
+## Chapter04 Spring Config && Spring Boot
   - Bean生命周期——bean创建
      * `创建解析顺序：Spring首先调用使用了@PostConstruct注解的方法，然后调用afterPropertiesSet()方法，最后调用配置文件中指定的初始化方法`
      * （1）首先调用构造函数来创建bean
