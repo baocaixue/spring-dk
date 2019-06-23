@@ -35,6 +35,7 @@ include 'chapter04:application-context-aware'//使用ApplicationContextAware
 include 'chapter04:factory-bean'//使用FactoryBean(知道factory实现)和直接访问FactoryBean
 include 'chapter04:factory-bean-and-factory-method-attributes'//第三方提供的bean，不知道实现，但提供了获取javabean实例的类
 include 'chapter04:property-editors'//属性编辑器
+include 'chapter04:message-source'//国际化
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
