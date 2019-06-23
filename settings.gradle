@@ -45,12 +45,8 @@ include 'chapter04:property-placeholder'
 include 'chapter04:jsr330'
 include 'chapter04:groovy-config'//使用groovy获取bean
 include 'chapter04:groovy-config-java'//使用groovy脚本配置bean——代替xml
-
-
-
-
-
-
+include 'chapter04:boot-simple'
+include 'chapter04:boot-web'
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
