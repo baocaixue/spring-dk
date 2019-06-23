@@ -1,0 +1,16 @@
+apply plugin: 'groovy'
+
+dependencies {
+    compile misc.groovy
+    compile project(':chapter03:bean-inheritance')
+}
+jar {
+    manifest {
+        attributes(
+                "Created-By": "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class": "com.isaac.ch4.GroovyConfig",
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+        )
+    }
+}
