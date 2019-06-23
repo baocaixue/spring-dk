@@ -1,0 +1,10 @@
+jar {
+    manifest {
+        attributes(
+                "Created-By": "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class": "com.isaac.ch4.PlaceHolderDemo",
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+        )
+    }
+}
