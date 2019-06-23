@@ -1,0 +1,14 @@
+dependencies {
+    compile  misc.inject
+}
+
+jar {
+    manifest {
+        attributes(
+                "Created-By": "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class": "com.isaac.ch4.Jsr330Demo",
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+        )
+    }
+}

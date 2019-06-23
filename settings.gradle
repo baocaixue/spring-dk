@@ -42,6 +42,8 @@ include 'chapter04:java-config'//使用Java类进行配置
 include 'chapter04:java-config-message-provider'
 include 'chapter04:environment'//environment
 include 'chapter04:property-placeholder'
+include 'chapter04:jsr330'
+
 
 
 
