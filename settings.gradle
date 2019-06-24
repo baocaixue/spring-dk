@@ -48,6 +48,8 @@ include 'chapter04:groovy-config-java'//使用groovy脚本配置bean——代替
 include 'chapter04:boot-simple'
 include 'chapter04:boot-web'
 
+include 'chapter05:aop-hello-world'
+
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Spring Pro, Fifth Edition" ' +
