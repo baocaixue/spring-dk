@@ -7,7 +7,7 @@ Spring5 Advance && Spring Review .
 
 ****
 
-### Spring模块
+# Spring模块
 | 模块 | 描述 |  
 |---|---  
 | aop | 该模块包含在应用程序中使用Spring的AOP功能时所需的所有类。如果打算在Spring中使用其他使用了AOP的功能，如声明式事务管理，则需要在应用程序中包含此JAR文件。此外，支持与AspectJ集成的类也封装在此模块中  
@@ -36,7 +36,7 @@ Spring5 Advance && Spring Review .
 ## [Chapter03 IOC&&DI](./chapter03)  
   - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java)   
 ## [Chapter04 Spring Config && Spring Boot](./chapter04)
-  - Bean生命周期——bean创建
+### Bean生命周期——bean创建
      * `创建解析顺序：Spring首先调用使用了@PostConstruct注解的方法，然后调用afterPropertiesSet()方法，最后调用配置文件中指定的初始化方法`
      * （1）首先调用构造函数来创建bean
      * （2）注入依赖项（setter）
@@ -46,16 +46,16 @@ Spring5 Advance && Spring Review .
      * （4）InitializingBean的afterPropertiesSet()方法在注入依赖之后立即执行。如果BeanFactory设置了提供的所有Bean属性并且满足BeanFactoryAware
      * 和ApplicationContextAware，将会调用afterPropertiesSet()方法
      * （5）最后执行init-method属性，这是因为它是bean的实际初始化方法
-  -  Bean生命周期——bean销毁
+###  Bean生命周期——bean销毁
      *  当使用封装了DefaultListableBeanFactory接口的ApplicationContext是实现（例如，通过getDefaultListableBeanFactory()方法获取的GenericXmlApplicationContext）时，
      可以通过调用ConfigurableBeanFactory.destroySingletons()向BeanFactory发出信号，告知销毁所有单例实例。通常，在应用程序关闭时执行此操作，并允许清理bean可能保持打开的任何
      资源，从而使应用程序可以正常关闭。此外，在该回调中还可以将存储在内存中的任何数据刷新到持久存储库中，并允许bean关闭可能已启动的长时间运行的任何进程。
      为了让bean接收到destroySingletons()被调用的通知，存在三种选择——方法、实现DisposableBean接口、JSR-250 @PreDestroy注解
      * `销毁解析顺序：Spring首先调用@PreDestroy注解的方法，然后调用DisposableBean.destroy()，最后调用XML定义中配置的destroy()方法`
      * [使用关闭钩子](./chapter04/shutdown-hook/src/main/java/com/isaac/ch4/DestructiveBeanWithHook.java)
-  - FactoryBean `创建并注入不能简单地使用new运算符创建的依赖项。FactoryBean是一个Bean，在ApplicationContext中配置，但当Spring使用FactoryBean接口来满足依赖或查找请求时，它并不返回FactoryBean，而是调用FactoryBean.getObject()方法并返回调用结果`
+### FactoryBean `创建并注入不能简单地使用new运算符创建的依赖项。FactoryBean是一个Bean，在ApplicationContext中配置，但当Spring使用FactoryBean接口来满足依赖或查找请求时，它并不返回FactoryBean，而是调用FactoryBean.getObject()方法并返回调用结果`
     * 用途：创建事务代理、JNDI上下文自动获取资源等    
-  - 属性编辑器 Spring PropertyEditor  
+### 属性编辑器 Spring PropertyEditor  
   
     | PropertyEditor | 描述 |  
     |---|---  
@@ -74,7 +74,7 @@ Spring5 Advance && Spring Review .
     | URLEditor | 将URL的字符串表示形式转换为java.net.URL的实例  
     
 ## [chapter05 Spring AOP](./chapter05) `不能通知最终的类，它们不能被覆盖，不能被代理`   
-  - AOP概念
+### AOP概念
     * 连接点：应用程序执行期间明确定义的一个点。连接点的典型示例包括方法的调用、方法调用本身、类初始化和对象实例化。连接点是AOP的核心概念，并且定义了在应用程序中可以使用AOP插入其他逻辑的点
     * 通知：在特定连接点执行的代码，由类中的方法定义。
     * 切入点：用于定义何时执行通知的连接点集合。通过创建切入点，可以更细致地控制如何将通知应用于应用程序中的组件。如前所述，典型的连接点是方法调用，或是特定类中的所有方法调用的集合。通常情况，可以在复杂的关系中插入切入点，从而进一步限制执行通知的时间
@@ -82,6 +82,6 @@ Spring5 Advance && Spring Review .
     * 织入：织入是在适当的位置将切面插入到应用程序代码中的过程。对于编译时AOP解决方案，织入过程通常在生成时完成。同样，对于运行时AOP解决方案，织入过程在运行时动态执行。此外，AspectJ还支持一种称为加载时织入（LTW）的织入机制，在该机制中，拦截底层的JVM类加载器，并在类加载器加载字节码时向其提供织入功能
     * 目标对象：执行流由AOP进程修改的对象称为目标对象。也叫通知对象
     * 引入：通过引入其他方法或字段来修改对象结构的过程。通过引入AOP来使任何对象实现特定的接口，而无需对象的类显式地实现该接口
-  - 静态AOP && 动态AOP 
-  - [AOP Alliance](http://aopalliance.sourceforge.net/)为AOP实现定义了一组标准接口，Spring应该使用AOP Alliance接口而不是定义自己的接口
+### 静态AOP && 动态AOP 
+### [AOP Alliance](http://aopalliance.sourceforge.net/)为AOP实现定义了一组标准接口，Spring应该使用AOP Alliance接口而不是定义自己的接口
     
