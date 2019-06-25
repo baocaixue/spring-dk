@@ -49,6 +49,8 @@ include 'chapter04:boot-simple'
 include 'chapter04:boot-web'
 
 include 'chapter05:aop-hello-world'
+include 'chapter05:simple-before-advice'//简单的前置通知——方法执行前将包含方法名的消息写入控制台
+
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
