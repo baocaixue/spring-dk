@@ -50,6 +50,7 @@ include 'chapter04:boot-web'
 
 include 'chapter05:aop-hello-world'
 include 'chapter05:simple-before-advice'//简单的前置通知——方法执行前将包含方法名的消息写入控制台
+include 'chapter05:security'//前置通知示例：前置通知保护方法访问（Spring Security项目）
 
 
 
