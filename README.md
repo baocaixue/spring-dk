@@ -106,4 +106,43 @@ Spring AOP的核心架构**基于代理**。要创建一个类的被通知实例
     | 异常通知 | org.springframework.aop.ThrowsAdvice | 异常通知在方法调用返回后执行，但只有在该调用抛出异常时执行。异常通知只能捕获特定的异常，如果使用异常通知，则可以访问抛出异常的方法、传递的参数以及调用的目标  
     | 引入通知 | org.springframework.aop.IntroductionInterceptor | Spring将引入建模为特殊类型的拦截器。通过使用引入拦截器，可以指定由引入通知引入的方法的实现  
     
-      
+### Spring中使用顾问和切入点  
+  ProxyFactory类提供了一种简单的方法来获取和配置自定义用户代码中的AOP代理实例。ProxyFactory.addAdvice()方法用于配置代理的通知，此方法在后台委托给addAdvisor()，创建**DefaultPointcutAdvisor**的实例并使用指向所有方法的切入点对其进行配置，这样的通知适用于目标对象上的所有方法。对于限制通知适用的方法，如果在通知中检查是可以的，但是会有一系列问题，如性能、代码耦合性，而适用切入点可以很好的解决这类问题。
+  `对于通知与目标之间的耦合-目标关联性。一般来说，当通知与目标关联性很小或没有，应该使用切入点；而关联性较强时，应该在通知内检查通知是否被正确使用。此外，还要避免不必要的通知方法，这会导致调用速度明显下降`
+- Pointcut接口  
+    ```java
+    package org.springframework.aop;
+    public interface PointCut {
+        ClassFilter getClassFilter();
+        MethodMatcher getMethodMatcher();
+    }
+    ```
+    Spring提供了一些可供选择的Pointcut实现，它们覆盖了大部分用例。  
+    当确定Pointcut是否适用于特定的方法时，Spring 首先使用Pointcut.getClassFilter()返回的ClassFilter实例检查是否适用。ClassFilter接口如下：
+    ```java
+    package org.springframework.aop;
+    public interface MethodMatcher { 
+        boolean matches(Method m, Class<?> targetClass);
+        boolean isRuntime();
+        boolean matches(Method m, Class<?> targetClass, Object[] args);
+    }
+    ```
+    Spring支持两种类型的MethodMatcher——静态和动态的MethodMatcher，具体哪种由isRuntime()的返回值决定，false表示静态、true表示动态。
+    对于静态切入点，Spring会针对目标上的每个方法调用一次MethodMatcher的matches(Method, Class<T>)方法，并缓存返回值，以便后续调用。
+    使用动态切入点，在第一次调用方法来确定方法的整体适用性时，也是通过matches(Method, Class<T>)执行静态检查。如果返回true，Spring将使用matches(Method, Class<T>, Object[])对每个方法调用执行进一步的检查。
+    
+    一般来说，静态切入点比动态切入点执行得更好，但动态切入点更灵活。应尽可能使用静态切入点，但是，如果所使用的通知增加了大量开销，那么使用动态切入点避免不必要的通知是比较明智的。  
+- 可用的切入点实现  
+
+    | 实现类 | 描述   
+    |---|---
+    |org.springframework.aop.support.annotation.AnnotationMatchingPointcut | 此实现在类或方法上查找特定的Java注解。该类需要JDK5或更高版本  
+    |org.springframework.aop.aspectj.AspectJExpressionPointcut | 此实现使用AspectJ织入器以AspectJ语法评估切入点表达式  
+    |org.springframework.aop.support.ComposablePointcut | ComposablePointcut类使用诸如union()和intersection()等操作组合两个或多个切入点  
+    |org.springframework.aop.support.ControlFlowPointcut | ControlFlowPointcut是一种特殊的切入点，它们匹配另一个方法的控制流中的所有方法，即任何作为另一个方法的结果而直接或间接调用的方法  
+    |org.springframework.aop.support.DynamicMethodMatcherPointcut | 此实现旨在作为构建动态切入点的基类  
+    |org.springframework.aop.support.JdkRegexpMethodPointcut | 该实现允许JDK1.4中正则表达式支持定义切入点  
+    |org.springframework.aop.support.NameMatchMethodPointcut | 可以创建一个切入点，对方法名称列表执行简单匹配  
+    |org.springframework.aop.support.StaticMethodMatcherPointcut | 用作构建静态切入点的基础 
+    
+### 代理
