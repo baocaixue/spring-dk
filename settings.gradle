@@ -57,6 +57,7 @@ include 'chapter05:simple-around-advice'//环绕通知——可以将Spring中�
 include 'chapter05:simple-throws-advice'//异常通知——后置异常通知很有用，它允许添加额外的日志记录而无需修改程序代码
 include 'chapter05:static-pointcut'//静态切入点
 include 'chapter05:dynamic-pointcut'//动态切入点
+include 'chapter05:simple-name-matching'//简单方法名称匹配切入点
 
 
 
