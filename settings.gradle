@@ -55,7 +55,7 @@ include 'chapter05:simple-after-returning-advice'//简单的后置返回通知
 include 'chapter05:after-returning-advice-keygen'//后置返回通知示例：将错误检查添加到方法中——检查KeyGenerator生成的弱密钥
 include 'chapter05:simple-around-advice'//环绕通知——可以将Spring中的环绕通知模型化为拦截器
 include 'chapter05:simple-throws-advice'//异常通知——后置异常通知很有用，它允许添加额外的日志记录而无需修改程序代码
-
+include 'chapter05:static-pointcut'//静态切入点
 
 
 
