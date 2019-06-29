@@ -1,0 +1,14 @@
+dependencies {
+    compile project(':chapter05:aop-hello-world')
+}
+
+jar {
+    manifest {
+        attributes(
+                "Created-By": "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class": "com.isaac.ch5.DynamicPointcutDemo",
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+        )
+    }
+}
