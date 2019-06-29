@@ -58,6 +58,8 @@ include 'chapter05:simple-throws-advice'//异常通知——后置异常通知�
 include 'chapter05:static-pointcut'//静态切入点
 include 'chapter05:dynamic-pointcut'//动态切入点
 include 'chapter05:simple-name-matching'//简单方法名称匹配切入点
+include 'chapter05:regex-pointcuts'//正则表达式创建切入点
+
 
 
 
