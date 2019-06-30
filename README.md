@@ -47,7 +47,7 @@ Spring5 Advance && Spring Review .
  * 和ApplicationContextAware，将会调用afterPropertiesSet()方法
  * （5）最后执行init-method属性，这是因为它是bean的实际初始化方法
 ###  Bean生命周期——bean销毁
- *  当使用封装了DefaultListableBeanFactory接口的ApplicationContext是实现（例如，通过getDefaultListableBeanFactory()方法获取的GenericXmlApplicationContext）时，
+ *  &nbsp;&nbsp;&nbsp;&nbsp;当使用封装了DefaultListableBeanFactory接口的ApplicationContext是实现（例如，通过getDefaultListableBeanFactory()方法获取的GenericXmlApplicationContext）时，
  可以通过调用ConfigurableBeanFactory.destroySingletons()向BeanFactory发出信号，告知销毁所有单例实例。通常，在应用程序关闭时执行此操作，并允许清理bean可能保持打开的任何
  资源，从而使应用程序可以正常关闭。此外，在该回调中还可以将存储在内存中的任何数据刷新到持久存储库中，并允许bean关闭可能已启动的长时间运行的任何进程。
  为了让bean接收到destroySingletons()被调用的通知，存在三种选择——方法、实现DisposableBean接口、JSR-250 @PreDestroy注解
@@ -86,9 +86,9 @@ Spring5 Advance && Spring Review .
 * 引入：通过引入其他方法或字段来修改对象结构的过程。通过引入AOP来使任何对象实现特定的接口，而无需对象的类显式地实现该接口
 ### 静态AOP && 动态AOP 
 ### [AOP Alliance](http://aopalliance.sourceforge.net/)
-为AOP实现定义了一组标准接口，Spring应该使用AOP Alliance接口而不是定义自己的接口
+&nbsp;&nbsp;&nbsp;&nbsp;为AOP实现定义了一组标准接口，Spring应该使用AOP Alliance接口而不是定义自己的接口
 ### Spring AOP架构
-Spring AOP的核心架构**基于代理**。要创建一个类的被通知实例，必须使用**ProxyFactory**创建该类的代理实例，要向ProxyFactory提供想要织入到代理的所有切面。使用ProxyFactory是创建AOP代理的纯程序化方法。在Spring中可以依赖Spring所提供的声明式AOP配置机制（**ProxyFactoryBean类、aop名称空间、@AspectJ样式注解**）来完成声明式代理的创建。  
+&nbsp;&nbsp;&nbsp;&nbsp;Spring AOP的核心架构**基于代理**。要创建一个类的被通知实例，必须使用**ProxyFactory**创建该类的代理实例，要向ProxyFactory提供想要织入到代理的所有切面。使用ProxyFactory是创建AOP代理的纯程序化方法。在Spring中可以依赖Spring所提供的声明式AOP配置机制（**ProxyFactoryBean类、aop名称空间、@AspectJ样式注解**）来完成声明式代理的创建。  
 在运行时，Spring会分析ApplicationContext中的bean定义的横切关注点，并动态生成代理bean（封装了底层目标bean）。此时不会直接调用目标bean，而是将调用者注入代理bean。然后，代理bean分析运行条件（即连接点、切入点、通知）并相应地织入适当的通知。Spring有两个代理实现：**JDK动态代理和CGLIB代理** 默认情况下，当被通知的目标对象实现一个接口时，Spring将使用JDK动态代理来创建目标的代理实例。但是，当被通知目标对象没实现接口时，将使用CGLIB来创建代理实例。（tips：JDK动态代理仅支持接口代理）
 - Spring中的连接点  
   Spring AOP最明显的简化是`只支持一种连接点类型：方法调用`。
@@ -107,7 +107,7 @@ Spring AOP的核心架构**基于代理**。要创建一个类的被通知实例
     | 引入通知 | org.springframework.aop.IntroductionInterceptor | Spring将引入建模为特殊类型的拦截器。通过使用引入拦截器，可以指定由引入通知引入的方法的实现  
     
 ### Spring中使用顾问和切入点  
-  ProxyFactory类提供了一种简单的方法来获取和配置自定义用户代码中的AOP代理实例。ProxyFactory.addAdvice()方法用于配置代理的通知，此方法在后台委托给addAdvisor()，创建**DefaultPointcutAdvisor**的实例并使用指向所有方法的切入点对其进行配置，这样的通知适用于目标对象上的所有方法。对于限制通知适用的方法，如果在通知中检查是可以的，但是会有一系列问题，如性能、代码耦合性，而适用切入点可以很好的解决这类问题。
+  &nbsp;&nbsp;&nbsp;&nbsp;ProxyFactory类提供了一种简单的方法来获取和配置自定义用户代码中的AOP代理实例。ProxyFactory.addAdvice()方法用于配置代理的通知，此方法在后台委托给addAdvisor()，创建**DefaultPointcutAdvisor**的实例并使用指向所有方法的切入点对其进行配置，这样的通知适用于目标对象上的所有方法。对于限制通知适用的方法，如果在通知中检查是可以的，但是会有一系列问题，如性能、代码耦合性，而适用切入点可以很好的解决这类问题。
   `对于通知与目标之间的耦合-目标关联性。一般来说，当通知与目标关联性很小或没有，应该使用切入点；而关联性较强时，应该在通知内检查通知是否被正确使用。此外，还要避免不必要的通知方法，这会导致调用速度明显下降`
 - Pointcut接口  
     ```java
@@ -117,7 +117,7 @@ Spring AOP的核心架构**基于代理**。要创建一个类的被通知实例
         MethodMatcher getMethodMatcher();
     }
     ```
-    Spring提供了一些可供选择的Pointcut实现，它们覆盖了大部分用例。  
+    &nbsp;&nbsp;&nbsp;&nbsp;Spring提供了一些可供选择的Pointcut实现，它们覆盖了大部分用例。  
     当确定Pointcut是否适用于特定的方法时，Spring 首先使用Pointcut.getClassFilter()返回的ClassFilter实例检查是否适用。ClassFilter接口如下：
     ```java
     package org.springframework.aop;
@@ -127,7 +127,7 @@ Spring AOP的核心架构**基于代理**。要创建一个类的被通知实例
         boolean matches(Method m, Class<?> targetClass, Object[] args);
     }
     ```
-    Spring支持两种类型的MethodMatcher——静态和动态的MethodMatcher，具体哪种由isRuntime()的返回值决定，false表示静态、true表示动态。
+    &nbsp;&nbsp;&nbsp;&nbsp;Spring支持两种类型的MethodMatcher——静态和动态的MethodMatcher，具体哪种由isRuntime()的返回值决定，false表示静态、true表示动态。
     对于静态切入点，Spring会针对目标上的每个方法调用一次MethodMatcher的matches(Method, Class<T>)方法，并缓存返回值，以便后续调用。
     使用动态切入点，在第一次调用方法来确定方法的整体适用性时，也是通过matches(Method, Class<T>)执行静态检查。如果返回true，Spring将使用matches(Method, Class<T>, Object[])对每个方法调用执行进一步的检查。
     
@@ -146,19 +146,19 @@ Spring AOP的核心架构**基于代理**。要创建一个类的被通知实例
     |org.springframework.aop.support.StaticMethodMatcherPointcut | 用作构建静态切入点的基础 
     
 ### 代理  
-`JDK Proxy类创建的JDK代理 和 使用CGLIB Enhancer类创建的基于CGLIB的代理`
-  代理的核心目标是**拦截方法调用**，并在必要时执行适用于特定方法的通知链。通知的管理和调用基本上是独立于代理的，由Spring AOP管理的。而代理主要负责拦截所有对方法的调用，并将它们根据需要传递给AOP框架，以便应用通知。
+&nbsp;&nbsp;&nbsp;&nbsp;`JDK Proxy类创建的JDK代理 和 使用CGLIB Enhancer类创建的基于CGLIB的代理`  
+  &nbsp;&nbsp;&nbsp;&nbsp;代理的核心目标是**拦截方法调用**，并在必要时执行适用于特定方法的通知链。通知的管理和调用基本上是独立于代理的，由Spring AOP管理的。而代理主要负责拦截所有对方法的调用，并将它们根据需要传递给AOP框架，以便应用通知。
   除了上述核心功能，代理还必须支持一组附加功能。可以通过AopContext类（抽象类）配置代理以公开自己，以便可以检索代理并从目标对象调用代理上的被通知方法。当通过`ProxyFactory.setExposeProxy()`启动该功能时，代理负责确保代理类被适当地公开。另外，所有代理类默认实现`Advised`接口，从而允许在创建代理之后更改通知链。
   代理还必须确保任何返回代理类（返回代理目标）的方法实际上返回的是代理而不是目标。
   
 - JDK动态代理  
-    JDK代理是Spring中最基本的代理，**JDK代理只能生成接口的代理**，而不能生成类的代理。代理的任何对象都必须至少实现一个接口，并且生成的代理将是实现该接口的对象。
+    &nbsp;&nbsp;&nbsp;&nbsp;JDK代理是Spring中最基本的代理，**JDK代理只能生成接口的代理**，而不能生成类的代理。代理的任何对象都必须至少实现一个接口，并且生成的代理将是实现该接口的对象。
     当使用JDK代理时，所有方法调用都会被JVM拦截并路由到代理的invoke()方法。然后由invoke()方法确定是否通知有关方法（根据由切入点定义的规则），如果确定要通知，则通过使用反射调用通知链，然后调用方法本身。
     在调用invoke()之前，JDK代理无法区分被通知方法和未被通知方法。这意味着对于代理上的未被通知的方法，invoke()方法仍然会被调用，所有检查仍然会执行，并且仍然可以通过使用反射进行调用。显然，每次调用方法时，都会导致运行时开销，即使代理不会执行额外的处理，而只是通过反射调用未被通知的方法。
     *通过使用`setInterfaces()`（位于由ProxyFactory类间接扩展的AdvisedSupport类中）指定要代理的接口列表，从而指示ProxyFactory使用JDK代理*
 
 - CGLIB代理  
-    CGLIB会为每个代理动态生成新类的字节码，并尽可能重用以生成的类。**所生成的代理类型将是目标对象类的子类**
+    &nbsp;&nbsp;&nbsp;&nbsp;CGLIB会为每个代理动态生成新类的字节码，并尽可能重用以生成的类。**所生成的代理类型将是目标对象类的子类**
     首次创建CGLIB代理时，CGLIB会询问Spring如何处理每个方法，这意味着每次调用JDK代理上的invoke()时所执行的许多决策对于CGLIB代理来说只会执行一次。由于CGLIB生成实际的字节码，因此在处理方法的方式上有更多的灵活性。例如，CGLIB代理可以生成适当的字节码来直接调用任何未被通知方法，从而减少代理所带来的开销。另外CGLIB代理可以确定一个方法是否返回代理，如果不返回，则允许直接调用方法，从而进一步减少运行时的开销
     CGLIB代理还以不同于JDK代理的方式处理固定的通知链。固定通知链是在代理生成后不会更改的链。默认情况下，即使在代理创建后，也可以更改代理上的顾问和通知，虽然很少这么做。CGLIB代理以特定方式处理固定通知链，从而减少执行通知链的运行时间开销
 
@@ -166,7 +166,7 @@ Spring AOP的核心架构**基于代理**。要创建一个类的被通知实例
     CGLIB代理可以代理类和接口，而JDK代理只能代理接口。在性能方面，除非在冻结模式下使用CGLIB，否则JDK和CGLIB标准模式之间没有显著差异（至少在运行被通知和未被通知的方法时没有显著差异）。在这种情况下，通知链不能更改且CGLIB在冻结模式下会进行进一步的优化。当需要代理类时，CGLIB代理是默认选择，因为它是唯一能够生成类代理的代理。如果想要在代理接口时使用CGLIB代理，必须使用setOptimize()方法将ProxyFactory中的optimize标志设为true
 
 ### 引入  
-  引入（Introduction）是Spring中可用的AOP功能集的重要组成部分。通过使用引入，可以动态的向现有对象引入新功能。在Spring中，可以将任何接口的实现引入现有对象。
+  &nbsp;&nbsp;&nbsp;&nbsp;引入（Introduction）是Spring中可用的AOP功能集的重要组成部分。通过使用引入，可以动态的向现有对象引入新功能。在Spring中，可以将任何接口的实现引入现有对象。
   Spring将引入视为一种特殊类型的通知，更具体地说，将其作为一种特殊类型的环绕通知。由于引入仅适用于类级别，因此不饿能在引入时使用切入点；在语义上讲，两者不匹配。**引入将新的接口实现添加到类中，而切入点定义了通知适用于哪些方法**。
   可以通过实现`IntroductionInterceptor`接口来创建引入，该接口扩展了MethodInterceptor和DynamicIntroductionAdvice接口。MethodInterceptor接口定义了invoke()方法，通过使用此方法，可以为所引入的接口提供实现，并根据需要对任何其他方法执行截取操作。_Spring提供了**DelegatingIntroductionInterceptor**的IntroductionInterceptor的默认实现_。可以创建一个既继承了DelegatingIntroductionInterceptor，又实现了想要引入的接口的类。然后，DelegatingIntroductionInterceptor实现简单地将所有引入方法的调用委托给相应的方法。
   当使用标准通知（不是引入）时，可能会将相同的通知实例用于多个对象。Spring文档将其称为`基于类型的声明周期（per-class life cycle）`，可以为许多类使用单个通知实例。对于引入来说，引入通知构成了被通知对象的状态的一部分，因此，针对每个被通知的对象都有一个独立的引入实例。这被称为`基于实例的生命周期（per-instance life cycle）`。因为必须确保每个被通知对象都有一个独立的引入实例，所以通常最好创建DefaultIntroductionAdvisor的一个子类，它负责创建引入通知。
