@@ -166,10 +166,10 @@ Spring5 Advance && Spring Review .
     CGLIB代理可以代理类和接口，而JDK代理只能代理接口。在性能方面，除非在冻结模式下使用CGLIB，否则JDK和CGLIB标准模式之间没有显著差异（至少在运行被通知和未被通知的方法时没有显著差异）。在这种情况下，通知链不能更改且CGLIB在冻结模式下会进行进一步的优化。当需要代理类时，CGLIB代理是默认选择，因为它是唯一能够生成类代理的代理。如果想要在代理接口时使用CGLIB代理，必须使用setOptimize()方法将ProxyFactory中的optimize标志设为true
 
 ### 引入  
-  &nbsp;&nbsp;&nbsp;&nbsp;引入（Introduction）是Spring中可用的AOP功能集的重要组成部分。通过使用引入，可以动态的向现有对象引入新功能。在Spring中，可以将任何接口的实现引入现有对象。
-  Spring将引入视为一种特殊类型的通知，更具体地说，将其作为一种特殊类型的环绕通知。由于引入仅适用于类级别，因此不饿能在引入时使用切入点；在语义上讲，两者不匹配。**引入将新的接口实现添加到类中，而切入点定义了通知适用于哪些方法**。
-  可以通过实现`IntroductionInterceptor`接口来创建引入，该接口扩展了MethodInterceptor和DynamicIntroductionAdvice接口。MethodInterceptor接口定义了invoke()方法，通过使用此方法，可以为所引入的接口提供实现，并根据需要对任何其他方法执行截取操作。_Spring提供了**DelegatingIntroductionInterceptor**的IntroductionInterceptor的默认实现_。可以创建一个既继承了DelegatingIntroductionInterceptor，又实现了想要引入的接口的类。然后，DelegatingIntroductionInterceptor实现简单地将所有引入方法的调用委托给相应的方法。
-  当使用标准通知（不是引入）时，可能会将相同的通知实例用于多个对象。Spring文档将其称为`基于类型的声明周期（per-class life cycle）`，可以为许多类使用单个通知实例。对于引入来说，引入通知构成了被通知对象的状态的一部分，因此，针对每个被通知的对象都有一个独立的引入实例。这被称为`基于实例的生命周期（per-instance life cycle）`。因为必须确保每个被通知对象都有一个独立的引入实例，所以通常最好创建DefaultIntroductionAdvisor的一个子类，它负责创建引入通知。
+  &nbsp;&nbsp;&nbsp;&nbsp;引入（Introduction）是Spring中可用的AOP功能集的重要组成部分。通过使用引入，可以动态的向现有对象引入新功能。在Spring中，可以将任何接口的实现引入现有对象。  
+  &nbsp;&nbsp;&nbsp;&nbsp;Spring将引入视为一种特殊类型的通知，更具体地说，将其作为一种特殊类型的环绕通知。由于引入仅适用于类级别，因此不饿能在引入时使用切入点；在语义上讲，两者不匹配。**引入将新的接口实现添加到类中，而切入点定义了通知适用于哪些方法**。  
+  &nbsp;&nbsp;&nbsp;&nbsp;可以通过实现`IntroductionInterceptor`接口来创建引入，该接口扩展了MethodInterceptor和DynamicIntroductionAdvice接口。MethodInterceptor接口定义了invoke()方法，通过使用此方法，可以为所引入的接口提供实现，并根据需要对任何其他方法执行截取操作。_Spring提供了**DelegatingIntroductionInterceptor**的IntroductionInterceptor的默认实现_。可以创建一个既继承了DelegatingIntroductionInterceptor，又实现了想要引入的接口的类。然后，DelegatingIntroductionInterceptor实现简单地将所有引入方法的调用委托给相应的方法。  
+  &nbsp;&nbsp;&nbsp;&nbsp;当使用标准通知（不是引入）时，可能会将相同的通知实例用于多个对象。Spring文档将其称为`基于类型的声明周期（per-class life cycle）`，可以为许多类使用单个通知实例。对于引入来说，引入通知构成了被通知对象的状态的一部分，因此，针对每个被通知的对象都有一个独立的引入实例。这被称为`基于实例的生命周期（per-instance life cycle）`。因为必须确保每个被通知对象都有一个独立的引入实例，所以通常最好创建DefaultIntroductionAdvisor的一个子类，它负责创建引入通知。
   
 
 ## [chapter06 Spring JDBC](./chapter06)
