@@ -61,6 +61,7 @@ include 'chapter05:simple-name-matching'//简单方法名称匹配切入点
 include 'chapter05:regex-pointcuts'//正则表达式创建切入点
 include 'chapter05:aspectj-regex-pointcuts'//AspectJ切入点表达式创建切入点，需要AspectJ库文件——aspectjrt.jar、aspectjweaver.jar
 include 'chapter05:annotation-pointcut'//注解匹配切入点
+include 'chapter05:proxy-performance'//比较代理性能（JDK代理&&CGLIB代理）
 
 
 
