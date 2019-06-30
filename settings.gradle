@@ -68,7 +68,9 @@ include 'chapter05:modification-introduction'//引入
 /* AOP框架服务 */
 include 'chapter05:proxyfactorybean'
 include 'chapter05:proxyfactorybean-introduction'
-
+include 'chapter05:aop-namespace'
+include 'chapter05:aspectj-annotations'
+include 'chapter05:aspectj-boot'
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
