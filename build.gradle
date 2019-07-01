@@ -18,7 +18,7 @@ ext {
     aspectjVersion = '1.8.13'
     derbyVersion = '10.13.1.1'
     dbcpVersion = '2.1'
-    mysqlVersion = '6.0.6'
+    mysqlVersion = '8.0.11'/*6.0.6 update fix:java.sql.SQLException: Unable to load authentication plugin 'caching_sha2_password'.*/
     h2Version = '1.4.194'
     jodaVersion = '2.9.9'
     utVersion = '6.0.1.GA'
@@ -37,6 +37,7 @@ ext {
     thymeSecurityVersion = '3.0.2.RELEASE'
     jQueryVersion = '3.2.1'
     twsVersion = '9.0.0.M22'
+    lombokVersion = '1.18.8'
 
     //persistency libraries
     hibernateVersion = '5.2.10.Final'
@@ -145,6 +146,7 @@ ext {
             jacksonDatabind: "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
             poi            : "org.apache.poi:poi:$poiVersion",
             io             : "commons-io:commons-io:2.5",
+            lombok         : "org.projectlombok:lombok:$lombokVersion"
     ]
 
     web = [

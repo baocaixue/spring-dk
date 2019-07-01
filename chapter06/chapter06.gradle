@@ -1,0 +1,17 @@
+subprojects {
+    group 'com.isaac.ch06'
+    apply plugin: 'java'
+
+    /*copy dependencies to build/libs */
+    task copyDependencies(type: Copy) {
+        from configurations.compile
+        into 'build/libs'
+    }
+
+    dependencies {
+        if (!project.name.contains("boot")) {
+            compile spring.context, spring.jdbc, misc.slf4jJcl, misc.logback, db.dbcp2, misc.lang3, misc.lombok
+        }
+        testCompile testing.junit
+    }
+}

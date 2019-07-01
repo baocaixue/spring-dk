@@ -172,4 +172,5 @@ Spring5 Advance && Spring Review .
   &nbsp;&nbsp;&nbsp;&nbsp;当使用标准通知（不是引入）时，可能会将相同的通知实例用于多个对象。Spring文档将其称为`基于类型的声明周期（per-class life cycle）`，可以为许多类使用单个通知实例。对于引入来说，引入通知构成了被通知对象的状态的一部分，因此，针对每个被通知的对象都有一个独立的引入实例。这被称为`基于实例的生命周期（per-instance life cycle）`。因为必须确保每个被通知对象都有一个独立的引入实例，所以通常最好创建DefaultIntroductionAdvisor的一个子类，它负责创建引入通知。
   
 
-## [chapter06 Spring JDBC](./chapter06)
+## [chapter06 Spring JDBC](./chapter06)  
+&nbsp;&nbsp;&nbsp;&nbsp;lambda表达式是使用Spring JDBC支持的理想方式

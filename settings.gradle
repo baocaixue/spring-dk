@@ -72,6 +72,8 @@ include 'chapter05:aop-namespace'
 include 'chapter05:aspectj-annotations'
 include 'chapter05:aspectj-boot'
 
+include 'chapter06:plain-jdbc'//本章节的基本数据模型
+
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Spring Pro, Fifth Edition" ' +
