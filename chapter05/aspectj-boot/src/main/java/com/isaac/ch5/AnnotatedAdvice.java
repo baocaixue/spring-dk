@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class AnnotatedAdvice {
-    @Pointcut("execution(* com.isaac.ch5..sing*(com.isaac.ch5.Guitar)) && args(value)")
+    @Pointcut("execution(* com.isaac.ch5.sing*(com.isaac.ch5.Guitar)) && args(value)")
     public void singExecution(Guitar value) {
     }
 
