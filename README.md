@@ -174,3 +174,19 @@ Spring5 Advance && Spring Review .
 
 ## [chapter06 Spring JDBC](./chapter06)  
 &nbsp;&nbsp;&nbsp;&nbsp;lambda表达式是使用Spring JDBC支持的理想方式
+
+### Spring JDBC基础结构
+- 概述以及要使用的包  
+
+    | 包 | 描述   
+    |---|---
+    | org.springframework.jdbc.core | 该包包含Spring中JDBC类的基础，包括核心JDBC类JdbcTemplate，它简化了使用JDBC编写数据库操作的过程。几个子包提供了JDBC数据访问支持，具有更多特定用途（例如，支持命名参数的JdbcTemplate类）以及相关的支持类  
+    | org.springframework.jdbc.datasource | 该包包含辅助类和DataSource实现，可用来在JEE容器外运行JDBC代码。几个子包提供了对嵌入式数据库、数据库初始化和各种数据源查找机制的支持  
+    | org.springframework.jdbc.object | 该包包含有助于将数据库返回的数据转换为对象或对象列表的类。这些对象和列表是纯Java对象，因此于数据库断开连接  
+    | org.springframework.jdbc.support | 该包中最重要的类是SQLException翻译支持。它允许Spring识别数据库所使用的错误代码并将它们映射到更高级别的异常  
+    | org.springframework.jdbc.config | 该包包含支持Spring的ApplicationContext中JDBC配置的类。例如，它包含用于jdbc名称空间（如：\<jdbc:embeddeddatabase\>标记）的处理程序类  
+ 
+
+## 数据库连接和数据源  
+&nbsp;&nbsp;&nbsp;&nbsp;可以提供一个实现了`javax.sql.DataSource`的bean，从而使用Spring来帮助管理数据库连接。_DataSource和Connection之间的区别在于DataSource可以提供并管理Connection。  
+&nbsp;&nbsp;&nbsp;&nbsp;`DriverManagerDataSource`（位于org.springframework.jdbc.datasource中）是DataSource的最简单实现，它只是调用DriverManager来获得连接。_因为DriverManagerDataSource不支持数据库连接池，因此此类不适用于除测试外的其他应用_。

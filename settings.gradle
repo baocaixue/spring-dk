@@ -73,6 +73,7 @@ include 'chapter05:aspectj-annotations'
 include 'chapter05:aspectj-boot'
 
 include 'chapter06:plain-jdbc'//本章节的基本数据模型
+include 'chapter06:spring-jdbc-annotations'//包含：数据库连接和数据源、建模JDBC操作的Spring类等
 
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
