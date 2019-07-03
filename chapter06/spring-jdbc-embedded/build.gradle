@@ -1,0 +1,13 @@
+dependencies {
+    compile project(':chapter06:plain-jdbc')
+    compile db.h2, db.derby
+}
+
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class"         : "com.isaac.ch6.JdbcSingerDaoDemo",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}
