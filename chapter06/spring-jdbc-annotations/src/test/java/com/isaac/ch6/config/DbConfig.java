@@ -19,7 +19,7 @@ public class DbConfig {
     private String driverClassName;
     @Value("${url}")
     private String url;
-    @Value("${username}")
+    @Value("${username1}")
     private String username;
     @Value("${password}")
     private String password;
