@@ -2,7 +2,7 @@ rootProject.name = 'spring-dk'
 
 include 'chapter02:hello-world'
 
-//Spring中引入IOC和
+//Spring中引入IOC和DI
 include 'chapter03:bean-aliases'//bean别名
 include 'chapter03:dependency-pull'//依赖拉取
 include 'chapter03:cdl'//上下文依赖查找
@@ -75,7 +75,7 @@ include 'chapter05:aspectj-boot'
 include 'chapter06:plain-jdbc'//本章节的基本数据模型
 include 'chapter06:spring-jdbc-annotations'//包含：数据库连接和数据源、建模JDBC操作的Spring类等
 include 'chapter06:spring-jdbc-embedded'//包含：嵌入式数据库支持、Dao类中使用DataSource、异常处理、Dao类中初始化JdbcTemplate等
-
+include 'chapter06:spring-jdbc-namedparam'//通过NamedParameterJdbcTemplate使用命名参数
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
