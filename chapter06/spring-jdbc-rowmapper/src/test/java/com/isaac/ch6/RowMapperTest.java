@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
-public class TemplateJdbcCfgTest {
-    private static Logger logger = LoggerFactory.getLogger(TemplateJdbcCfgTest.class);
+public class RowMapperTest {
+    private static Logger logger = LoggerFactory.getLogger(RowMapperTest.class);
 
     @Test
     public void test() {
