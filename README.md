@@ -187,6 +187,17 @@ Spring5 Advance && Spring Review .
     | org.springframework.jdbc.config | 该包包含支持Spring的ApplicationContext中JDBC配置的类。例如，它包含用于jdbc名称空间（如：\<jdbc:embeddeddatabase\>标记）的处理程序类  
  
 
-## 数据库连接和数据源  
+### 数据库连接和数据源  
 &nbsp;&nbsp;&nbsp;&nbsp;可以提供一个实现了`javax.sql.DataSource`的bean，从而使用Spring来帮助管理数据库连接。_DataSource和Connection之间的区别在于DataSource可以提供并管理Connection。  
 &nbsp;&nbsp;&nbsp;&nbsp;`DriverManagerDataSource`（位于org.springframework.jdbc.datasource中）是DataSource的最简单实现，它只是调用DriverManager来获得连接。_因为DriverManagerDataSource不支持数据库连接池，因此此类不适用于除测试外的其他应用_。
+
+
+### 建模JDBC操作的Spring类
+- MappingSqlQuery<T> 允许将查询字符串和mapRow()方法一起封装到一个类中
+- SqlUpdate 封装任何SQL更新语句，同时还提供了许多有用的功能，以便绑定SQL参数，在插入新的记录后检索RDBMS生成的键等
+- BatchSqlUpdate 允许执行批量更新操作。例如，可以遍历Java List对象并让BatchSqlUpdate对记录进行排序，然后批量提交更新语句。可以随时设置批量大小并刷新操作
+- SqlFunction<T> 允许使用参数和返回类型调用数据库中的存储函数。此外，还可以使用另一个类StoredProcedure来帮助调用存储过程
+- 使用注解来设置JDBC DAO
+
+
+## [chapter07 Spring 中使用 Hibernate](./chapter07)

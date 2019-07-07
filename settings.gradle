@@ -78,6 +78,8 @@ include 'chapter06:spring-jdbc-embedded'//包含：嵌入式数据库支持、Da
 include 'chapter06:spring-jdbc-namedparam'//通过NamedParameterJdbcTemplate使用命名参数
 include 'chapter06:spring-jdbc-rowmapper'//使用RowMapper<T>检索域对象
 include 'chapter06:spring-jdbc-resultsetextractor'//使用ResultSetExtractor检索嵌套域对象
+include 'chapter06:spring-boot-jdbc'
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
