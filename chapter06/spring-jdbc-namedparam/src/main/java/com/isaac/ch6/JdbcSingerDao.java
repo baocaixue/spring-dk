@@ -21,7 +21,7 @@ public class JdbcSingerDao implements SingerDao{
     }
 
     @Override
-    public List<Singer> findByFirstName() {
+    public List<Singer> findByFirstName(String firstName) {
         return null;
     }
 

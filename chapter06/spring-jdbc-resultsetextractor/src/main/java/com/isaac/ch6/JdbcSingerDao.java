@@ -23,7 +23,7 @@ public class JdbcSingerDao implements SingerDao, InitializingBean {
     }
 
     @Override
-    public List<Singer> findByFirstName() {
+    public List<Singer> findByFirstName(String firstName) {
         return null;
     }
 

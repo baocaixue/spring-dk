@@ -7,7 +7,7 @@ import java.util.List;
 public interface SingerDao {
     List<Singer> findAll();
 
-    List<Singer> findByFirstName();
+    List<Singer> findByFirstName(String firstName);
 
     String findNameById(Long id);
 
