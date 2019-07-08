@@ -80,6 +80,8 @@ include 'chapter06:spring-jdbc-rowmapper'//使用RowMapper<T>检索域对象
 include 'chapter06:spring-jdbc-resultsetextractor'//使用ResultSetExtractor检索嵌套域对象
 include 'chapter06:spring-boot-jdbc'
 
+include 'chapter07:hibernate-base'
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
