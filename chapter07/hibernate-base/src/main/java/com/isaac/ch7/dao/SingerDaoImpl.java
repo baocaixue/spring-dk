@@ -12,33 +12,37 @@ import java.util.List;
 
 @Repository("singerDao")
 @Transactional
+@SuppressWarnings("uncheck")
 public class SingerDaoImpl implements SingerDao {
     private static Logger logger = LoggerFactory.getLogger(SingerDaoImpl.class);
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Singer> findAll() {
         return sessionFactory.getCurrentSession().createQuery("from Singer").list();
     }
 
     @Override
     public List<Singer> findAllWithAlbum() {
-        return null;
+        return sessionFactory.getCurrentSession().createNamedQuery("Singer.findAllWithAlbum", Singer.class).list();
     }
 
     @Override
     public Singer findById(Long id) {
-        return null;
+        return sessionFactory.getCurrentSession().createNamedQuery("Singer.findById", Singer.class).setParameter("id", id).getSingleResult();
     }
 
     @Override
     public Singer save(Singer singer) {
-        return null;
+        sessionFactory.getCurrentSession().saveOrUpdate(singer);
+        logger.info("Singer saved with id : " + singer.getId());
+        return singer;
     }
 
     @Override
     public void delete(Singer singer) {
-
+        sessionFactory.getCurrentSession().delete(singer);
     }
 }

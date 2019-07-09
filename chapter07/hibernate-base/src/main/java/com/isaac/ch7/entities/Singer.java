@@ -8,6 +8,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "singer")
+@NamedQueries({
+        @NamedQuery(name = "Singer.findById", query = "select distinct s from Singer s " + "left  join fetch s.albums a " + "left join fetch s.instruments i " + " where s.id = :id"),
+        @NamedQuery(name = "Singer.findAllWithAlbum", query = "select  distinct s from Singer s " + "left  join fetch s.albums a " + "left join fetch s.instruments i ")
+})
 public class Singer implements Serializable {
     private Long id;
     private String firstName;
@@ -52,6 +56,7 @@ public class Singer implements Serializable {
 
     //cascade意味着更新操作“级联”子级，orphanRemoval意味着在专辑更新后，应该从数据库中删除不再存在于数据集中的条目
     @OneToMany(mappedBy = "singer", cascade = CascadeType.ALL, orphanRemoval = true)
+//, fetch = FetchType.EAGER//EAGER模式能关联查询，但有性能问题，这里用NamedQueries来关联查询
     public Set<Album> getAlbums() {
         return albums;
     }
