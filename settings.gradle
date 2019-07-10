@@ -81,6 +81,8 @@ include 'chapter06:spring-jdbc-resultsetextractor'//使用ResultSetExtractor检�
 include 'chapter06:spring-boot-jdbc'
 
 include 'chapter07:hibernate-base'
+include 'chapter07:hibernate-crud'
+
 
 
 //check if the modules have gradle configuration files

@@ -201,3 +201,18 @@ Spring5 Advance && Spring Review .
 
 
 ## [chapter07 Spring 中使用 Hibernate](./chapter07)
+***
+问题：
+```text
+...
+Caused by: org.hibernate.HibernateException: Could not obtain transaction-synchronized Session for current thread
+	at org.springframework.orm.hibernate5.SpringSessionContext.currentSession(SpringSessionContext.java:137)
+	at org.hibernate.internal.SessionFactoryImpl.getCurrentSession(SessionFactoryImpl.java:456)
+	at com.isaac.ch7.dao.InstrumentDaoImpl.save(InstrumentDaoImpl.java:17)
+	at com.isaac.ch7.config.InitDb.afterPropertiesSet(InitDb.java:32)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1753)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1690)
+	... 35 more
+```
+解决启用注解声明事务@EnableTransactionManagement,[详见](https://stackoverflow.com/questions/26203446/spring-hibernate-could-not-obtain-transaction-synchronized-session-for-current)
+
