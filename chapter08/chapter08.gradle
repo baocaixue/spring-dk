@@ -1,0 +1,22 @@
+subprojects {
+    group 'com.isaac.ch08'
+    apply plugin: 'java'
+
+    task copyDependencies(type: Copy) {
+        from configurations.compile
+        into 'build/libs'
+    }
+
+    dependencies {
+        if (!project.name.contains("boot")) {
+            compile (spring.contextSupport) {
+                exclude  module: 'spring-context'
+                exclude  module: 'spring-beans'
+                exclude  module: 'spring-core'
+            }
+            compile spring.orm, spring.context, misc.slf4jJcl, misc.logback, db.h2, misc.lang3,
+                    hibernate.em
+        }
+        testCompile testing.junit
+    }
+}
