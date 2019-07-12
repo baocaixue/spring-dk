@@ -223,17 +223,17 @@ Caused by: org.hibernate.HibernateException: Could not obtain transaction-synchr
 ### JPA2.1
 &nbsp;&nbsp;&nbsp;&nbsp;与其他Java规范请求（JSR）一样，JPA2.1规范（JSR-338）的目标是在JSE和JEE环境中**对ORM编程模型进行标准化**。 它定义了JPA持久化提供程序应该实现的一组通用概念、注解、接口和其他服务。按JPA标准进行编程，可以随意切换底层提供程序。   
 &nbsp;&nbsp;&nbsp;&nbsp;在JPA中，**核心概念是EntityManager接口**，它是来自EntityManagerFactory类型的工厂。EntityManager的主要工作是维护一个持久化上下文，在该上下文中存储由其管理的所有实体实例。EntityManager的配置被定义为一个持久化单元，并且在应用程序中可以有多个持久化单元。如果使用的是Hibernate，那么可以像使用Session接口一样使用持久化上下文。同样，EntityManagerFactory等同于SessionFactory。在Hibernate中，托管实体存储在会话中，可以通过Hibernate的SessionFactory或Session接口直接与会话进行交互。但是，在JPA中，不能直接与持久化上下文交互。需要依靠EntityManager来完成相关工作。   
-#### 配置JPA的EntityManagerFactory         
-.      
+#### 配置JPA的EntityManagerFactory
+***
     Spring支持三种类型的EntityManagerFactory的配置    
-    * LocalEntityManagerFactoryBean类，这是最简单的一种，只需持久化单元名称，但不支持DataSource注入，因此无法参与全局事务，只能适用于简单的开发目的    
-    * 用于JEE兼容的容器，其中应用程序服务器根据部署描述符中信息启动JPA持久化单元。这样就允许Spring通过JNDI查找来查找实体管理器。下面代码描述了通过JNDI查找实体管理器所需的元素      
+- LocalEntityManagerFactoryBean类，这是最简单的一种，只需持久化单元名称，但不支持DataSource注入，因此无法参与全局事务，只能适用于简单的开发目的    
+- 用于JEE兼容的容器，其中应用程序服务器根据部署描述符中信息启动JPA持久化单元。这样就允许Spring通过JNDI查找来查找实体管理器。下面代码描述了通过JNDI查找实体管理器所需的元素      
     ```
     <beans ...>
         <jee:jndi-lookup id="emf" jndi-name="persistence/xxx"/>
     </beans>
     ```   
-    * LocalContainerEntityManagerFactoryBean类，支持DataSource注入并可以参与本地和全局事务   
+- LocalContainerEntityManagerFactoryBean类，支持DataSource注入并可以参与本地和全局事务   
     
     
 
