@@ -1,8 +1,8 @@
 # Spring is a wonderful season
 
-Spring5 Advance && Spring Review . 
-
 This repository is a reading note acroding to [Pro Spring 5th Edition](http://www.apress.com/9781484228074) by Iuliana Cosmina, Rob Harrop, Chris Schaefer, Clarence Ho (Apress, 2017). 
+
+https://github.com/Apress/pro-spring-5
 
 ****
 
