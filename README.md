@@ -226,14 +226,14 @@ Caused by: org.hibernate.HibernateException: Could not obtain transaction-synchr
 #### 配置JPA的EntityManagerFactory         
 .      
     Spring支持三种类型的EntityManagerFactory的配置    
-    - &nbsp;&nbsp;&nbsp;&nbsp;LocalEntityManagerFactoryBean类，这是最简单的一种，只需持久化单元名称，但不支持DataSource注入，因此无法参与全局事务，只能适用于简单的开发目的    
-    - &nbsp;&nbsp;&nbsp;&nbsp;用于JEE兼容的容器，其中应用程序服务器根据部署描述符中信息启动JPA持久化单元。这样就允许Spring通过JNDI查找来查找实体管理器。下面代码描述了通过JNDI查找实体管理器所需的元素      
+    * LocalEntityManagerFactoryBean类，这是最简单的一种，只需持久化单元名称，但不支持DataSource注入，因此无法参与全局事务，只能适用于简单的开发目的    
+    * 用于JEE兼容的容器，其中应用程序服务器根据部署描述符中信息启动JPA持久化单元。这样就允许Spring通过JNDI查找来查找实体管理器。下面代码描述了通过JNDI查找实体管理器所需的元素      
     ```
     <beans ...>
         <jee:jndi-lookup id="emf" jndi-name="persistence/xxx"/>
     </beans>
     ```   
-    - &nbsp;&nbsp;&nbsp;&nbsp;LocalContainerEntityManagerFactoryBean类，支持DataSource注入并可以参与本地和全局事务   
+    * LocalContainerEntityManagerFactoryBean类，支持DataSource注入并可以参与本地和全局事务   
     
     
 
