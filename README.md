@@ -233,7 +233,7 @@ Caused by: org.hibernate.HibernateException: Could not obtain transaction-synchr
         <jee:jndi-lookup id="emf" jndi-name="persistence/xxx"/>
     </beans>
     ```   
-    - LocalContainerEntityManagerFactoryBean类，支持DataSource注入并可以参与本地和全局事务   
+    - &nbsp;&nbsp;&nbsp;&nbsp;LocalContainerEntityManagerFactoryBean类，支持DataSource注入并可以参与本地和全局事务   
     
     
 
