@@ -2,8 +2,7 @@
 
 Spring5 Advance && Spring Review . 
 
-  `declaration`: spring-dk refer to pro-spring-5    
-[refer](https://github.com/Apress/pro-spring-5) .  
+This repository is a reading note acroding to [Pro Spring 5th Edition](http://www.apress.com/9781484228074) by Iuliana Cosmina, Rob Harrop, Chris Schaefer, Clarence Ho (Apress, 2017). 
 
 ****
 
@@ -33,8 +32,10 @@ Spring5 Advance && Spring Review .
 
 
 ## Note  
+***
 ## [Chapter03 IOC&&DI](./chapter03)  
-  - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java)   
+  - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java)  
+***
 ## [Chapter04 Spring Config && Spring Boot](./chapter04)
 ### Bean生命周期——bean创建
  * `创建解析顺序：Spring首先调用使用了@PostConstruct注解的方法，然后调用afterPropertiesSet()方法，最后调用配置文件中指定的初始化方法`
@@ -74,6 +75,7 @@ Spring5 Advance && Spring Review .
 | StringTrimmerEditor | 在注入前对字符串值进行修建。需要明确注册该编辑器  
 | URLEditor | 将URL的字符串表示形式转换为java.net.URL的实例  
     
+***    
 ## [chapter05 Spring AOP](./chapter05) 
 `不能通知最终的类，它们不能被覆盖，不能被代理`   
 ### AOP概念
@@ -171,7 +173,7 @@ Spring5 Advance && Spring Review .
   &nbsp;&nbsp;&nbsp;&nbsp;可以通过实现`IntroductionInterceptor`接口来创建引入，该接口扩展了MethodInterceptor和DynamicIntroductionAdvice接口。MethodInterceptor接口定义了invoke()方法，通过使用此方法，可以为所引入的接口提供实现，并根据需要对任何其他方法执行截取操作。_Spring提供了**DelegatingIntroductionInterceptor**的IntroductionInterceptor的默认实现_。可以创建一个既继承了DelegatingIntroductionInterceptor，又实现了想要引入的接口的类。然后，DelegatingIntroductionInterceptor实现简单地将所有引入方法的调用委托给相应的方法。  
   &nbsp;&nbsp;&nbsp;&nbsp;当使用标准通知（不是引入）时，可能会将相同的通知实例用于多个对象。Spring文档将其称为`基于类型的声明周期（per-class life cycle）`，可以为许多类使用单个通知实例。对于引入来说，引入通知构成了被通知对象的状态的一部分，因此，针对每个被通知的对象都有一个独立的引入实例。这被称为`基于实例的生命周期（per-instance life cycle）`。因为必须确保每个被通知对象都有一个独立的引入实例，所以通常最好创建DefaultIntroductionAdvisor的一个子类，它负责创建引入通知。
   
-
+***
 ## [chapter06 Spring JDBC](./chapter06)  
 &nbsp;&nbsp;&nbsp;&nbsp;lambda表达式是使用Spring JDBC支持的理想方式
 
@@ -199,7 +201,7 @@ Spring5 Advance && Spring Review .
 - SqlFunction<T> 允许使用参数和返回类型调用数据库中的存储函数。此外，还可以使用另一个类StoredProcedure来帮助调用存储过程
 - 使用注解来设置JDBC DAO
 
-
+***
 ## [chapter07 Spring 中使用 Hibernate](./chapter07)
 ***
 问题：
@@ -216,6 +218,7 @@ Caused by: org.hibernate.HibernateException: Could not obtain transaction-synchr
 ```
 解决启用注解声明事务@EnableTransactionManagement,[详见](https://stackoverflow.com/questions/26203446/spring-hibernate-could-not-obtain-transaction-synchronized-session-for-current)  
 
+***
 ## [chapter08 在Spring中使用JPA2进行数据访问](./chapter08)
 &nbsp;&nbsp;&nbsp;&nbsp;在使用ORM方法实现数据访问逻辑时使用Hibernate和Spring，其中，Hibernate的使用方式是：配置SessionFactory，使用Session接口进行数据操作。但是，还有另一种Hibernate的使用方式：使用Hibernate作为**标准Java持久化API（JPA）** 的持久化提供程序  
 &nbsp;&nbsp;&nbsp;&nbsp;JPA提供了标准化的概念，可以轻松在JPA持久化提供程序（如Hibernate、EclipseLink、Oracle TopLink和Apache OpenJpa）之间转换。  
@@ -224,8 +227,7 @@ Caused by: org.hibernate.HibernateException: Could not obtain transaction-synchr
 &nbsp;&nbsp;&nbsp;&nbsp;与其他Java规范请求（JSR）一样，JPA2.1规范（JSR-338）的目标是在JSE和JEE环境中**对ORM编程模型进行标准化**。 它定义了JPA持久化提供程序应该实现的一组通用概念、注解、接口和其他服务。按JPA标准进行编程，可以随意切换底层提供程序。   
 &nbsp;&nbsp;&nbsp;&nbsp;在JPA中，**核心概念是EntityManager接口**，它是来自EntityManagerFactory类型的工厂。EntityManager的主要工作是维护一个持久化上下文，在该上下文中存储由其管理的所有实体实例。EntityManager的配置被定义为一个持久化单元，并且在应用程序中可以有多个持久化单元。如果使用的是Hibernate，那么可以像使用Session接口一样使用持久化上下文。同样，EntityManagerFactory等同于SessionFactory。在Hibernate中，托管实体存储在会话中，可以通过Hibernate的SessionFactory或Session接口直接与会话进行交互。但是，在JPA中，不能直接与持久化上下文交互。需要依靠EntityManager来完成相关工作。   
 #### 配置JPA的EntityManagerFactory
-***
-    Spring支持三种类型的EntityManagerFactory的配置    
+Spring支持三种类型的EntityManagerFactory的配置    
 - LocalEntityManagerFactoryBean类，这是最简单的一种，只需持久化单元名称，但不支持DataSource注入，因此无法参与全局事务，只能适用于简单的开发目的    
 - 用于JEE兼容的容器，其中应用程序服务器根据部署描述符中信息启动JPA持久化单元。这样就允许Spring通过JNDI查找来查找实体管理器。下面代码描述了通过JNDI查找实体管理器所需的元素      
     ```
