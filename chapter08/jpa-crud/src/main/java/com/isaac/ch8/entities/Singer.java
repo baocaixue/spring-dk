@@ -22,6 +22,7 @@ import static javax.persistence.GenerationType.IDENTITY;
                         "left join fetch s.albums a " +
                         "left join fetch s.instruments i")
 })
+@SqlResultSetMapping(name = "singerResult", entities = @EntityResult(entityClass = Singer.class))
 public class Singer implements Serializable {
 
     public static final String FIND_ALL = "Singer.findAll";
