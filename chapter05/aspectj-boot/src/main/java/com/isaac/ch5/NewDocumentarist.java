@@ -14,6 +14,7 @@ public class NewDocumentarist {
         guitar.setBrand("Brand。。");
         guitarist.sing(guitar);
         guitarist.talk();
+        guitarist.rest("@Demo test");
     }
 
     @Autowired

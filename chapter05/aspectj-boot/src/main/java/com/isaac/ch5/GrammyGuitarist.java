@@ -12,7 +12,8 @@ public class GrammyGuitarist{
         System.out.println("play: " + guitar.play());
     }
 
-    public void rest(){
+    @Demo
+    public void rest(String arg){
         System.out.println("zzz");
     }
 

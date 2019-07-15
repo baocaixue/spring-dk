@@ -8,10 +8,12 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 @Aspect
 public class AnnotatedAdvice {
-    @Pointcut("execution(* com.isaac.ch5.sing*(com.isaac.ch5.Guitar)) && args(value)")
+    @Pointcut("execution(* com.isaac.ch5.*.sing*(com.isaac.ch5.Guitar)) && args(value)")
     public void singExecution(Guitar value) {
     }
 
@@ -43,5 +45,10 @@ public class AnnotatedAdvice {
                 + " argument: " + value.getBrand());
 
         return retVal;
+    }
+
+    @Before("@annotation(Demo)")
+    public void annotatedAdvice(JoinPoint joinPoint) {
+        System.out.println("------@Demo----execute " + joinPoint.getSignature() + " args is " + Arrays.toString(joinPoint.getArgs()));
     }
 }
