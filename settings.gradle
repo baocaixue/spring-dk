@@ -88,7 +88,7 @@ include 'chapter07:hibernate-crud'
 
 //JPA
 include 'chapter08:jpa-crud'
-
+include 'chapter08:jpa-criteria'//使用JPA2 Criteria（标准） API进行条件查询
 
 
 

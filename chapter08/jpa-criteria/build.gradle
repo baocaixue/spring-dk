@@ -1,0 +1,38 @@
+apply plugin: 'idea'
+
+//sourceSets {
+//    generated
+//}
+//
+//sourceSets.generated.java.srcDirs=['src/main/generated']
+//
+//configurations {
+//    querydslapt
+//}
+
+dependencies {
+    annotationProcessor hibernate.jpaModelGen//自动生成元模型类的工具
+    compile hibernate.querydslapt
+}
+
+//task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generated the QueryDSL query types'){
+//    source = sourceSets.main.java
+//    classpath = configurations.compile + configurations.querydslapt
+//
+//    options.compilerArgs = [
+//            "-proc:only",
+//            "-processor", "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor"
+//    ]
+//    destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
+//}
+//
+//compileJava.dependsOn generateQueryDSL
+
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class"         : "com.isaac.ch8.SpringJPADemo",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}

@@ -236,6 +236,24 @@ Spring支持三种类型的EntityManagerFactory的配置
     </beans>
     ```   
 - LocalContainerEntityManagerFactoryBean类，支持DataSource注入并可以参与本地和全局事务   
+
+#### 使用JPA2 Criteria API进行条件查询   
+&nbsp;&nbsp;&nbsp;&nbsp;在JPA2中，引入的一个主要新功能是强类型的Criteria API查询。在新的Criteria API中，传递到查询中的条件是**基于映射的实体类的元模型**。因此，所指定的每个条件都是强类型的，并且在编译而不是运行时会发现错误。   
+&nbsp;&nbsp;&nbsp;&nbsp;在JPA Criteria API中，实体类的元模型由具有下划线（_）后缀的实体类名称表示。https://docs.jboss.org/hibernate/jpamodelgen/1.3/reference/en-US/html_single/#d0e302   
+```java
+@javax.annotation.Generated(value = "org.hibernate.jpamodelgen.JPAModelEntityProcessor")
+@StaticMetamodel(Singer.class)
+public abstract class Singer_{
+    public static volatile SingularAttribute<Singer, String> firstName;
+    public static volatile SingularAttribute<Singer, String> lastName;
+    public static volatile SetAttribute<Singer, Album> albums;
+    public static volatile SetAttribute<Singer, Instrument> instruments;
+    public static volatile SingularAttribute<Singer, Long> id;
+    public static volatile SingularAttribute<Singer, Integer> version;
+    public static volatile SingularAttribute<Singer, Date> birthDay;
+}
+```
+
     
     
 
