@@ -1,0 +1,12 @@
+dependencies {
+    compile spring.data, misc.guava
+}
+
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class"         : "com.isaac.ch8.SpringJPADemo",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}
