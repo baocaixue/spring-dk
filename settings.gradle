@@ -90,6 +90,7 @@ include 'chapter07:hibernate-crud'
 include 'chapter08:jpa-crud'
 include 'chapter08:jpa-criteria'//使用JPA2 Criteria（标准） API进行条件查询
 include 'chapter08:spring-data-jpa'//spring data jpa基本CrudRepository的使用
+include 'chapter08:spring-data-jpa-alt'//spring data jpa高级使用
 
 
 
