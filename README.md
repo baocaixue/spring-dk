@@ -252,7 +252,28 @@ public abstract class Singer_{
     public static volatile SingularAttribute<Singer, Integer> version;
     public static volatile SingularAttribute<Singer, Date> birthDay;
 }
-```
+```   
+
+#### Spring Data JPA的审计功能（跟踪实体类的变化）  
+&nbsp;&nbsp;&nbsp;&nbsp;Spring Data JPA项目以实体监视器的形式提供了该功能，可以帮助自动跟踪审计信息。在Spring4之后，实体类要实现**Auditable<U, ID extends Serializable, T extends TemporalAccessor> extends Persistable<ID>** 接口或扩展实现该接口的类。   
+```java
+package org.springframework.data.domain;
+import java.io.Serializable;
+import java.time.temporal.TemporalAccessor;
+import java.util.Optional;
+
+public interface Auditable<U, ID extends Serializable, T extends TemporalAccessor> extends Persistable<ID> {
+    Optional<U> getCreatedBy();
+    void setCreatedBy(U createdBy);
+    Optional<T> getCreatedDate();
+    void setCreatedDate(T createdDate);
+    Optional<U> getLastModifiedBy();
+    void setLastModifiedBy(U lastModifiedBy);
+    Optional<T> getLastModifiedDate();
+    void setLastModifiedDate(T lastModifiedDate);
+}
+```   
+`Spring5 开始实现Auditable不再是必须的，@CreatedBy、@CreatedDate、@LastModifiedBy、@LastModifiedDate注解`
 
     
     
