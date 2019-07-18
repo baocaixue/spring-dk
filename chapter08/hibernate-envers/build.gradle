@@ -1,0 +1,11 @@
+dependencies {
+    compile spring.aspects, spring.data, misc.guava, hibernate.envers
+}
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class"         : "com.isaac.ch8.SpringEnversJPADemo",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}

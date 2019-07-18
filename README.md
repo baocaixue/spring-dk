@@ -226,7 +226,7 @@ Caused by: org.hibernate.HibernateException: Could not obtain transaction-synchr
 ### JPA2.1
 &nbsp;&nbsp;&nbsp;&nbsp;与其他Java规范请求（JSR）一样，JPA2.1规范（JSR-338）的目标是在JSE和JEE环境中**对ORM编程模型进行标准化**。 它定义了JPA持久化提供程序应该实现的一组通用概念、注解、接口和其他服务。按JPA标准进行编程，可以随意切换底层提供程序。   
 &nbsp;&nbsp;&nbsp;&nbsp;在JPA中，**核心概念是EntityManager接口**，它是来自EntityManagerFactory类型的工厂。EntityManager的主要工作是维护一个持久化上下文，在该上下文中存储由其管理的所有实体实例。EntityManager的配置被定义为一个持久化单元，并且在应用程序中可以有多个持久化单元。如果使用的是Hibernate，那么可以像使用Session接口一样使用持久化上下文。同样，EntityManagerFactory等同于SessionFactory。在Hibernate中，托管实体存储在会话中，可以通过Hibernate的SessionFactory或Session接口直接与会话进行交互。但是，在JPA中，不能直接与持久化上下文交互。需要依靠EntityManager来完成相关工作。   
-#### 配置JPA的EntityManagerFactory
+### 配置JPA的EntityManagerFactory
 Spring支持三种类型的EntityManagerFactory的配置    
 - LocalEntityManagerFactoryBean类，这是最简单的一种，只需持久化单元名称，但不支持DataSource注入，因此无法参与全局事务，只能适用于简单的开发目的    
 - 用于JEE兼容的容器，其中应用程序服务器根据部署描述符中信息启动JPA持久化单元。这样就允许Spring通过JNDI查找来查找实体管理器。下面代码描述了通过JNDI查找实体管理器所需的元素      
@@ -237,7 +237,7 @@ Spring支持三种类型的EntityManagerFactory的配置
     ```   
 - LocalContainerEntityManagerFactoryBean类，支持DataSource注入并可以参与本地和全局事务   
 
-#### 使用JPA2 Criteria API进行条件查询   
+### 使用JPA2 Criteria API进行条件查询   
 &nbsp;&nbsp;&nbsp;&nbsp;在JPA2中，引入的一个主要新功能是强类型的Criteria API查询。在新的Criteria API中，传递到查询中的条件是**基于映射的实体类的元模型**。因此，所指定的每个条件都是强类型的，并且在编译而不是运行时会发现错误。   
 &nbsp;&nbsp;&nbsp;&nbsp;在JPA Criteria API中，实体类的元模型由具有下划线（_）后缀的实体类名称表示。https://docs.jboss.org/hibernate/jpamodelgen/1.3/reference/en-US/html_single/#d0e302   
 ```java
@@ -254,7 +254,7 @@ public abstract class Singer_{
 }
 ```   
 
-#### Spring Data JPA的审计功能（跟踪实体类的变化）  
+### Spring Data JPA的审计功能（跟踪实体类的变化）  
 &nbsp;&nbsp;&nbsp;&nbsp;Spring Data JPA项目以实体监视器的形式提供了该功能，可以帮助自动跟踪审计信息。在Spring4之后，实体类要实现**Auditable<U, ID extends Serializable, T extends TemporalAccessor> extends Persistable<ID>** 接口或扩展实现该接口的类。   
 ```java
 package org.springframework.data.domain;
@@ -273,7 +273,26 @@ public interface Auditable<U, ID extends Serializable, T extends TemporalAccesso
     void setLastModifiedDate(T lastModifiedDate);
 }
 ```   
-`Spring5 开始实现Auditable不再是必须的，@CreatedBy、@CreatedDate、@LastModifiedBy、@LastModifiedDate注解`
+`Spring5 开始实现Auditable不再是必须的，@CreatedBy、@CreatedDate、@LastModifiedBy、@LastModifiedDate注解`  
+
+###Hibernate Envers实现实体版本自动化
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Envers审计策略  
+ 
+| 审计策略 | 描述   
+|---|---  
+| 默认策略 | Envers维护一个用于修改记录的列。每次插入或更新记录时，会使用从数据库序列或表中检索到的版本号将新记录插入到历史记录表中 
+| 有效性审计策略 | 该策略将存储每条历史记录的开始和最终版本。每次插入或更新记录时，都会使用开始版本号将新记录插入到历史纪录表中。同时，以前的记录用最终版本号进行更新。也可以配置Envers，记录将最终版本更新到以前的历史纪录中的时间戳  
+
+为支持有效性审计策略，需要为每个历史记录表添加四列：AUDIT_REVISION(INT) 历史记录的开始版本、ACTION_TYPE(INT) 操作类型（0：添加，1：修改，2：删除）、AUDIT_REVISION_END(INT) 历史记录的最终版本、AUDIT_REVISION_END_TS(TIMESTAMP) 最终版本被更新的时间戳   
+还需要另一个表来跟踪版本号和创建每个版本的时间戳REVINFO   
+```sql
+CREATE TABLE REVINFO (
+  REVTSTMP BIGINT NOT NULL,
+  REV INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (REVTSTMP, REV)
+)
+```
 
     
     
