@@ -275,7 +275,7 @@ public interface Auditable<U, ID extends Serializable, T extends TemporalAccesso
 ```   
 `Spring5 开始实现Auditable不再是必须的，@CreatedBy、@CreatedDate、@LastModifiedBy、@LastModifiedDate注解`  
 
-###Hibernate Envers实现实体版本自动化
+### Hibernate Envers实现实体版本自动化
 &nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;Envers审计策略  
  
