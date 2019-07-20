@@ -93,6 +93,7 @@ include 'chapter08:spring-data-jpa'//spring data jpa基本CrudRepository的使�
 include 'chapter08:spring-data-jpa-alt'//spring data jpa高级使用
 include 'chapter08:spring-data-jpa-audit'//spring dat jpa审计字段处理功能
 include 'chapter08:hibernate-envers'//实体版本的自动化，不是jpa的功能
+include 'chapter08:boot-jpa'//spring boot JPA
 
 
 
