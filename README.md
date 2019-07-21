@@ -292,7 +292,89 @@ CREATE TABLE REVINFO (
   REV INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (REVTSTMP, REV)
 )
+```   
+***
+## [chapter09 事务管理](./chapter09)  
+&nbsp;&nbsp;&nbsp;&nbsp;容器管理事务（CMT）以声明方式管理事务 && 选择Bean管理事务（BMT）以编程式管理事务（Java Transaction API(JTA)进行编程）   
+* Spring事务抽象层：事务抽象类的基本组件，这些类来控制事务的属性
+* 声明式事务：XML配置文件及Java注解
+* 编程式事务：TransactionTemplate类，可以完全控制事务管理代码
+* 使用JTA实现全局事务：对于需要跨越多个后端资源的全局事务，使用JTA在Spring中配置和实现全局事务。`PS:在Java世界中，全局事务是通过JTA实施的`  
+```text
+    在使用事务时，必须选择是使用全局事务还是本地事务。本地事务特定于单个事务资源（如JDBC连接），而全局事务由容器管理并且可以跨越多个事务资源。
+    
+    全局事务说明：
+    于JTA兼容的事务管理器通过各自的资源管理器连接到多个事务资源，而这些资源管理器能够通过XA协议（一种定义了分布式事务的开放标准）与事务管理器进行通信，并使用 2 Phase Commit（2PC）机制确保后端数据源被更新或回滚。整个机制由Java Transaction Service（JTS）规范指定。 
+```  
+
+### 事务的属性（ACID属性：原子性、一致性、隔离性、持久性）   
+&nbsp;&nbsp;&nbsp;&nbsp;对于事务的原子性、一致性、持久性是无法控制的，但是，可以控制事务的传播和超时，以及配置事务是否应为只读并指定隔离级别。   
+
+#### TransactionDefinition接口（控制事务的属性）   
+```java
+    package org.springframework.transaction;
+    import java.sql.Connection;
+    
+    public interface TransactionDefinition {
+        // Variable declaration statements omitted
+        ...
+        //指定事务调用时所发生的事情，具体取决于是否存在活动的事务（事务传播类型）
+        int getPropagationBehavior();
+        //控制着其他事务能够看到的数据更改（事务隔离级别）
+        int getIsolationLevel();
+        //返回事务必须完成的时间
+        int getTimeout();
+        //指示事务是否只读
+        boolean isReadOnly();
+        //事务名称
+        String getName();
+    }
 ```
+事务的隔离级别（可以使用TransactionDefinition接口中定义的静态值来表示隔离级别）   
+
+| 隔离级别 | 描述   
+|---|---  
+| ISOLATION_DEFAULT | 底层数据存储的默认隔离级别  
+| ISOLATION_READ_UNCOMMITTED | 最低的隔离级别；它几乎不是事务，因为它允许一个事务查看由其他未提交事务修改的事务   
+| ISOLATION_READ_COMMITTED | 大多数数据库的默认级别，它确保一个事务不能读取其他事务未提交的数据。但是，一旦数据可以被一个事务读取，那么数据就可以由其他事务更新  
+| ISOLATION_REPEATABLE_READ | 比ISOLATION_READ_COMMITTED更严格；它可以确保一旦选择了数据，就可以再次选择相同的数据集。即使其他事务插入新数据，也仍然可以选择新插入的数据 
+| ISOLATION_SERIALIZABLE | 最严格且最可靠的隔离级别，所有的事务都被视为一个接一个地执行      
+
+事务传播类型（可以使用TransactionDefinition接口中定义的静态值表示传播类型）   
+
+| 传播类型 | 描述   
+|---|---  
+| PROPAGATION_REQUIRED | 支持一个已经存在的事务。如果没有事务，则开始一个新的事务   
+| PROPAGATION_SUPPORTS | 支持一个已经存在的事务。如果没有事务，则以非事务方式执行   
+| PROPAGATION_MANDATORY | 支持一个已经存在的事务。如果没有活动事务，则抛出异常  
+| PROPAGATION_REQUIRES_NEW | 始终开始新的事务。如果活动事务已经存在，将其暂停  
+| PROPAGATION_NOT_SUPPORTED | 不支持事务的执行。始终以非事务方式执行并暂停任何现有事务  
+| PROPAGATION_NEVER | 即使存在活动事务，也始终以非事务方式执行。如果存在活动事务，则抛出异常  
+| PROPAGATION_NESTED | 如果存在活动事务，则在嵌套事务中运行。如果没有活动事务，则与PROPAGATION_REQUIRED相同   
+
+#### TransactionStatus接口（允许事务管理器控制事务的执行）  
+```java
+    package org.springframework.transaction;
+    
+    public interface TransactionStatus extends SavepointManager {
+        boolean isNewTransaction();
+        
+        //指示事务内部是否携带保存点（也就是说，事务是基于保存点而创建的嵌套事务）
+        boolean hasSavepoint();
+        
+        //会导致回滚并结束活动事务
+        void setRollbackOnly();
+        
+        boolean isRollbackOnly();
+        
+        //如果可用，会将底层会话存储到数据存储区
+        void flush();
+        
+        //事务是否已提交或回滚
+        boolean isCompleted();
+    }
+```   
+
 
     
     

@@ -95,7 +95,8 @@ include 'chapter08:spring-data-jpa-audit'//spring dat jpa审计字段处理功�
 include 'chapter08:hibernate-envers'//实体版本的自动化，不是jpa的功能
 include 'chapter08:boot-jpa'//spring boot JPA
 
-
+//事务管理
+include 'chapter09:base-dao'
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
