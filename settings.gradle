@@ -97,6 +97,8 @@ include 'chapter08:boot-jpa'//spring boot JPA
 
 //事务管理
 include 'chapter09:base-dao'
+include 'chapter09:transactions-xml'
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->

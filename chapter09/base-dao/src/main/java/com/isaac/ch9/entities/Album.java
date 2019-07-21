@@ -1,6 +1,5 @@
 package com.isaac.ch9.entities;
 
-import entities.Singer;
 import lombok.Data;
 
 import javax.persistence.*;
