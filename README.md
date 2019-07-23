@@ -374,6 +374,9 @@ CREATE TABLE REVINFO (
         boolean isCompleted();
     }
 ```   
+### 全局事务   
+`跨越多个后端资源的事务被称为全局（分布式）事务`
+&nbsp;&nbsp;&nbsp;&nbsp;全局事务一个主要特征是保证了**原子性**。还包括应该由事务管理器处理的复杂协调和同步逻辑。在Java中，JTA是实现全局事务的事实标准
 
 
     

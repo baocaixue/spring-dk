@@ -100,6 +100,7 @@ include 'chapter09:base-dao'
 include 'chapter09:transactions-xml'
 include 'chapter09:transactions-annotation'
 include 'chapter09:transactions-programmatic'//编程式事务
+include 'chapter09:transactions-jta'//全局事务
 
 
 //check if the modules have gradle configuration files
