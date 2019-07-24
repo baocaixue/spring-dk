@@ -32,6 +32,7 @@ public class ServiceConfig {
         /*这是位于https://www.atomikos.com/Documentation/SpringIntegration#The_Advanced_Case_40As_of_3.3_41的Atomikos文档中作为示例给出的XML配置的注解配置调整版本*/
         Properties properties = new Properties();
         properties.put("com.atomikos.icatch.service", "com.atomikos.icatch.standalone.UserTransactionServiceFactory");
+        properties.put("com.atomikos.icatch.log_base_dir", "translogs");
         return new UserTransactionServiceImp(properties);
     }
 

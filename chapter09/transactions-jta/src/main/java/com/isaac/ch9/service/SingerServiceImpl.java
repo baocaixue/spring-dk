@@ -56,7 +56,7 @@ public class SingerServiceImpl implements SingerService {
     }
 
     @Override
-    @Transactional
+    @Transactional(value = "transactionManager", rollbackFor = Exception.class)
     public Singer save(Singer singer) {
         Singer singerB = new Singer();
         singerB.setFirstName(singer.getFirstName());
