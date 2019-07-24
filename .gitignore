@@ -28,3 +28,4 @@ gradle/
 */.DS_Store
 .DS_Store
 */.idea/
+/tmlog.lck
