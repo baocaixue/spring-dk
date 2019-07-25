@@ -376,8 +376,12 @@ CREATE TABLE REVINFO (
 ```   
 ### 全局事务   
 `跨越多个后端资源的事务被称为全局（分布式）事务`
-&nbsp;&nbsp;&nbsp;&nbsp;全局事务一个主要特征是保证了**原子性**。还包括应该由事务管理器处理的复杂协调和同步逻辑。在Java中，JTA是实现全局事务的事实标准
+&nbsp;&nbsp;&nbsp;&nbsp;全局事务一个主要特征是保证了**原子性**。还包括应该由事务管理器处理的复杂协调和同步逻辑。在Java中，JTA是实现全局事务的事实标准   
 
+***
+## [chapter10](./chapter10)   
+* Spring类型转换系统和Formatter服务提供程序接口（SPI）：通用类型转换系统和Formatter SPI，来替代以前的PropertyEditor支持，以及它们如何在任何Java类型之间进行转换   
+* Spring中的验证：Spring如何支持域对象验证。Spring自己的Validator接口，以及重点关注JSR-349（bean验证）支持
 
     
     

@@ -103,6 +103,9 @@ include 'chapter09:transactions-programmatic'//编程式事务
 include 'chapter09:transactions-jta'//全局事务
 include 'chapter09:boot-jta'//Spring Boot JTA
 
+//使用类型转换和格式化进行验证
+include 'chapter10:converter'//Spring类型转换系统
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
