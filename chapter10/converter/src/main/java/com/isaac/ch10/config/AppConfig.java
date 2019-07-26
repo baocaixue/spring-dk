@@ -1,8 +1,6 @@
 package com.isaac.ch10.config;
 
 import com.isaac.ch10.Singer;
-import com.isaac.ch10.StringToDateTimeConverter;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +10,7 @@ import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.core.convert.converter.Converter;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +25,7 @@ public class AppConfig {
     public Singer taylor(@Value("${countrySinger.firstName}") String firstName,
                          @Value("${countrySinger.lastName}") String lastName,
                          @Value("${countrySinger.personalSite}") URL personalSite,
-                         @Value("${countrySinger.birthDate}") DateTime birthDate) {
+                         @Value("${countrySinger.birthDate}") LocalDate birthDate) {
         Singer singer = new Singer();
         singer.setFirstName(firstName);
         singer.setLastName(lastName);

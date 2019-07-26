@@ -384,7 +384,7 @@ CREATE TABLE REVINFO (
 * Spring中的验证：Spring如何支持域对象验证。Spring自己的Validator接口，以及重点关注JSR-349（bean验证）支持   
 
 ### 类型转换   
-`注册的ConversionServiceFactoryBean的Bean Name必须是conversionService，否则会ConversionNotSupportedException`
+`注册的ConversionServiceFactoryBean的Bean Name必须是conversionService，否则会抛出ConversionNotSupportedException`
     
     
 
