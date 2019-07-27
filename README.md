@@ -385,6 +385,9 @@ CREATE TABLE REVINFO (
 
 ### 类型转换   
 `注册的ConversionServiceFactoryBean的Bean Name必须是conversionService，否则会抛出ConversionNotSupportedException`
+任意类型之间的转换用途举例：   
+`一种可能的场景是有两个系统需要更新相同的歌手信息，但是数据库结构不同（例如，系统A中的姓氏对应系统B中的名字，等等），可以在保存之前使用类型转换系统来转换对象`   
+从Spring3.0开始，Spring MVC大量使用了转换服务（以及Formatter SPI）。在Web应用上下文配置中，如果声明了标记\<mvc:annotation-driven/>或在Java配置类中使用@EnableWebMvc，那么将自动注册所有默认转换器（例如，StringToArrayConverter、StringToBooleanConverter、StringToLocaleConverter，它们都位于org.springframework.core.convert.support包中）和格式化器（例如CurrencyFormatter、DateFormatter和NumberFormatter，它们都位于org.springframework.format包的各种子包中）。
     
     
 
