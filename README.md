@@ -396,6 +396,9 @@ CREATE TABLE REVINFO (
 * NumberFormatter
 * PercentFormatter    
 
+### Spring中的验证   
+`当完成数据绑定并构建完域对象时，才会对该对象进行验证，同时返回任何错误并显式给用户。如果验证成功，该对象将被持久保存到数据库`   
+&nbsp;&nbsp;&nbsp;&nbsp;Spring支持两种主要类型的验证。第一种验证类型是由Spring提供的，可以通过实现**org.springframework.validation.Validator**接口来创建自定义验证器。另一种类型是通过Spring对**JSR-349(Bean Validation)**的支持实现的
     
     
 
