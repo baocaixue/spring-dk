@@ -379,7 +379,7 @@ CREATE TABLE REVINFO (
 &nbsp;&nbsp;&nbsp;&nbsp;全局事务一个主要特征是保证了**原子性**。还包括应该由事务管理器处理的复杂协调和同步逻辑。在Java中，JTA是实现全局事务的事实标准   
 
 ***
-## [chapter10](./chapter10)   
+## [chapter10 使用类型转换和格式化进行验证](./chapter10)   
 * Spring类型转换系统和Formatter服务提供程序接口（SPI）：通用类型转换系统和Formatter SPI，来替代以前的PropertyEditor支持，以及它们如何在任何Java类型之间进行转换   
 * Spring中的验证：Spring如何支持域对象验证。Spring自己的Validator接口，以及重点关注JSR-349（bean验证）支持   
 
@@ -398,7 +398,19 @@ CREATE TABLE REVINFO (
 
 ### Spring中的验证   
 `当完成数据绑定并构建完域对象时，才会对该对象进行验证，同时返回任何错误并显式给用户。如果验证成功，该对象将被持久保存到数据库`   
-&nbsp;&nbsp;&nbsp;&nbsp;Spring支持两种主要类型的验证。第一种验证类型是由Spring提供的，可以通过实现**org.springframework.validation.Validator**接口来创建自定义验证器。另一种类型是通过Spring对**JSR-349(Bean Validation)**的支持实现的
+&nbsp;&nbsp;&nbsp;&nbsp;Spring支持两种主要类型的验证。第一种验证类型是由Spring提供的，可以通过实现**org.springframework.validation.Validator**接口来创建自定义验证器。另一种类型是通过Spring对**JSR-349(Bean Validation)**的支持实现的   
+#### 验证说明   
+* 自定义验证注意事项：   
+&nbsp;&nbsp;&nbsp;&nbsp;对于JSR-349中的自定义验证，应该使用哪种方法：自定义验证器还是@AssertTrue注解？通常，@AssertTrue方法实现起来更简单，可以在域对象的代码中看到验证规则。但是，对于具有更复杂逻辑的验证器（例如，假设需要注入一个服务类，访问数据库并检查有效值），实现自定义验证是不错的方法，因为可能不想将服务层对象添加到域对象中。而且，自定义验证其可以在相似的域对象中重用   
+* 使用哪种验证API   
+&nbsp;&nbsp;&nbsp;&nbsp;JSR-349是最好的选择，主要原因如下：   
+    * JSR-349是JEE标准，并得到许多前/后端框架（如Spring、JPA2、SpringMVC和GWT）的广泛支持
+    * JSR-349提供的标准验证API隐藏了底层提供程序，因此不受限于特定的提供程序
+    * Spring从版本4开始就与JSR-349紧密集成。例如，在Spring MVC Web控制器中，可以使用@Valid注解（位于javax.validation包中）在方法中注解参数，Spring将在数据绑定过程中自动调用JSR-349验证。此外，在Spring MVC Web应用程序上下文配置中，可以使用一个名为\<mvc:annotation-driven/>的简单标记将Spring配置为自动启用Spring类型转换系统和字段格式化，以支持JSR-349（Bean Validation） 
+    * 如果使用的是JPA2，那么提供程序会在持久化之前自动对实体执行JSR-349验证，从而提供另一层保护   
+    
+*** 
+## [chapter11 任务调度](./chapter11)
     
     
 

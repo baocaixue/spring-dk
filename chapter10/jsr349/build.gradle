@@ -1,0 +1,11 @@
+dependencies{
+    compile misc.javaEl, misc.glassfishEl
+}
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class"         : "com.isaac.ch10.Jsr349Demo",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}
