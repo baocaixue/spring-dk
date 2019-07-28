@@ -110,7 +110,7 @@ include 'chapter10:converter-multiple-types'//任意类型之间的转换
 include 'chapter10:custom-formatter'//自定义格式化器
 include 'chapter10:spring-validator'//实现接口创建自定义验证器
 include 'chapter10:jsr349'//使用JSR-349 Bean Validation
-
+include 'chapter10:jsr349-custom'//JSR-349创建自定义验证器
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
