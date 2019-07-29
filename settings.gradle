@@ -113,6 +113,9 @@ include 'chapter10:jsr349'//使用JSR-349 Bean Validation
 include 'chapter10:jsr349-custom'//JSR-349创建自定义验证器
 include 'chapter10:jsr349-assertTrue'
 
+//任务调度
+include 'chapter11:base-task'
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
