@@ -416,19 +416,26 @@ CREATE TABLE REVINFO (
 * 异步任务执行：在Spring中使用@Async注解来异步执行任务
 * Spring中的任务执行：Spring的TaskExecutor接口以及如何执行任务   
 
-## Spring中的任务调度   
+### Spring中的任务调度   
 &nbsp;&nbsp;&nbsp;&nbsp;在Spring应用程序中可以使用多种方法触发任务的执行。   
 &nbsp;&nbsp;&nbsp;&nbsp;一种方法是通过已存在于应用程序部署环境中的调度系统从外部触发作业。例如，使用一些商业系统（例如Control-M或CA AutoSys）来调度任务。如果应用程序在Linux/UNIX平台上运行，则可以使用**crontab**调度程序。作业触发可以通过向Spring应用程序发送RESTful-WS请求并让Spring的MVC控制器触发任务来完成   
 &nbsp;&nbsp;&nbsp;&nbsp;另一种方法是Spring中使用任务调度支持。Spring在任务调度方面提供了三个选项   
 * 支持JDK定时器：Spring支持用于任务调度的JDK的Timer对象
 * 与Quartz集成：[Quartz Scheduler](https://www.quartz-scheduler.org)是一个流行的开源调度库
 * Spring自己的Spring TaskScheduler抽象：Spring3引入了TaskScheduler抽象，它提供一种简单的方法来调度任务并支持大多数典型的需求   
-### Spring TaskScheduler抽象介绍   
+#### Spring TaskScheduler抽象介绍   
 &nbsp;&nbsp;&nbsp;&nbsp;Spring的TaskScheduler抽象主要有三个参与者   
 * Trigger接口：org.springframework.scheduling.Trigger接口为定义触发机制提供了支持。Spring提供了两个Trigger实现。CronTrigger类支持基于cron表达式的触发，而PeriodicTrigger类支持基于初始延迟和固定时间间隔的触发
 * 任务：任务是需要调度的业务逻辑。在Spring中，可以将任务指定为任何Spring bean中的方法
 * TaskScheduler接口：org.springframework.scheduling.TaskScheduler接口为任务调度提供支持。Spring提供了TaskScheduler接口的三个实现类。TimerManagerTaskScheduler类（在org.springframework.scheduling.commonj包中）封装了CommonJ的commonj.timers.TimerManager接口，该接口常用于商业JEE应用服务器（如WebSphere和WebLogic）。ConcurrentTaskScheduler和ThreadPoolTaskScheduler类（都在org.springframework.scheduling.concurrent包中）封装了java.util.concurrent.ScheduledThreadPoolExecutor类，这两个类都支持从共享线程池执行任务   
 
+### Spring中任务的执行  
+&nbsp;&nbsp;&nbsp;&nbsp;Spring自2.0以来，就提供了一个通过TaskExecutor接口执行任务的抽象。下面是一些常见的TaskExecutor实现。
+* SimpleAsyncTaskExecutor：在每次调用时创建新线程，不重用现有的线程
+* SyncTaskExecutor：不会异步执行，调用发生在调用线程中
+* SimpleThreadPoolTaskExecutor：Quartz的SimpleThreadPool的子类，当需要Quartz和非Quartz组件之间共享线程池时使用
+* ThreadPoolTaskExecutor：TaskExecutor的一种实现，提供了通过bean属性配置ThreadPoolExecutor并将其作为Spring TaskExecutor公开的功能   
+`虽然每种TaskExecutor实现都有自己的目的，但调用约定是相同的。唯一的变化是在配置中，需要定义所使用的TaskExecutor实现及其属性（如果有的话）`
     
     
 
