@@ -117,6 +117,7 @@ include 'chapter10:jsr349-assertTrue'
 include 'chapter11:base-task'
 include 'chapter11:scheduled-task'//spring名称空间进行任务调度
 include 'chapter11:scheduled-task-annotation'//使用注解进行任务调度
+include 'chapter11:async-task'//Spring中异步任务的执行（一般用于第三方调用的任务）
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
