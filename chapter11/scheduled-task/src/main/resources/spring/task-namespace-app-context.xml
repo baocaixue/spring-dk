@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!--Spring实例化一个ThreadPoolTaskScheduler类的一个实例，并将属性pool-size指定为调度程序可以使用的线程池的大小-->
+    <task:scheduler id="carScheduler" pool-size="10"/>
+
+    <!--可以调度一个或多个任务，任务可以引用Spring bean中特定的方法。 fixed-delay属性指示Spring实例化PeriodicTrigger作为Trigger实现-->
+    <!--<task:scheduled-tasks scheduler="carScheduler">-->
+        <!--<task:scheduled ref="carService" method="updateCarAgeJob" fixed-delay="10000"/>-->
+    <!--</task:scheduled-tasks>-->
+
+    <!--cron表达式 每分钟调度一次-->
+    <task:scheduled-tasks scheduler="carScheduler">
+        <task:scheduled ref="carService" method="updateCarAgeJob" cron="0 * * * * *"/>
+    </task:scheduled-tasks>
+</beans>

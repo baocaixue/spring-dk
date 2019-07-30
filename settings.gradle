@@ -115,6 +115,7 @@ include 'chapter10:jsr349-assertTrue'
 
 //任务调度
 include 'chapter11:base-task'
+include 'chapter11:scheduled-task'//spring名称空间进行任务调度
 
 
 //check if the modules have gradle configuration files

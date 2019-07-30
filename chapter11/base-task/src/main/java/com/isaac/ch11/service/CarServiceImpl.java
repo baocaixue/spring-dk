@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
-@Service
+@Service("carService")
 @Transactional
 public class CarServiceImpl implements CarService {
     private final Logger logger = LoggerFactory.getLogger(CarServiceImpl.class);
