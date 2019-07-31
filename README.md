@@ -435,7 +435,27 @@ CREATE TABLE REVINFO (
 * SyncTaskExecutor：不会异步执行，调用发生在调用线程中
 * SimpleThreadPoolTaskExecutor：Quartz的SimpleThreadPool的子类，当需要Quartz和非Quartz组件之间共享线程池时使用
 * ThreadPoolTaskExecutor：TaskExecutor的一种实现，提供了通过bean属性配置ThreadPoolExecutor并将其作为Spring TaskExecutor公开的功能   
-`虽然每种TaskExecutor实现都有自己的目的，但调用约定是相同的。唯一的变化是在配置中，需要定义所使用的TaskExecutor实现及其属性（如果有的话）`
+`虽然每种TaskExecutor实现都有自己的目的，但调用约定是相同的。唯一的变化是在配置中，需要定义所使用的TaskExecutor实现及其属性（如果有的话）`   
+
+
+***
+## [chapter12 Spring远程处理](./chapter12)   
+```text
+    远程处理概述：
+    自Java首次创建以来，就一直支持远程处理。在早期（Java1.x），大多数远程需求是通过使用传统的TCP套接字或Java远程方法调用（Java Remote Method Invocation，RMI）来实现的。
+    在J2EE出现后，EJB和JMS成为应用程序服务器通信的常用选择。XML和互联网的快速发展促成了在HTTP上使用XML实现远程支持，包括针对基于XML的RPC（JAX-RPC）的Java API、针对XML Web Services（JAX-WS）的Java API以及基于HTTP的技术（例如Hessian和Burlap）。
+    此外，Spring还提供了自己的基于HTTP的远程支持，称为Spring HTTP调用器。
+    近年来为了应对互联网的爆炸性增长以及对更具响应性的Web应用程序的需求（例如，通过Ajax），应用程序的更轻量级和高效的远程支持已经成为企业成功的关键。
+    因此，针对RESTful Web Service(JAX-RS)的Java API被推出并迅速流行开来。其他协议，比如Comet和HTML5 WebSocket也吸引了很多开发人员。
+```
+&nbsp;&nbsp;&nbsp;&nbsp;在远程处理方面，Spring提供了自己的支持（通过Spring HTTP调用器）。
+* Spring HTTP调用器：如果两个需要通信的应用程序都是基于Spring的，那么Spring HTTP调用器提供了一种简单且有效的方法来调用其他应用程序所公开的服务。
+* Spring中使用JMS：Java消息服务（JMS）提供了另一种在应用程序之间交换消息的异步且松散耦合的方法。
+* Spring中使用RESTful Web服务：RESTful Web服务是专门围绕HTTP设计的，是为应用程序提供远程支持以及支持使用Ajax的高度交互式Web应用程序的最常用前端技术。
+* Spring中使用AMQP：Spring高级消息队列协议（AMQP）项目提供了围绕AMQP的、典型的、类似Spring的抽象以及RabbitMQ实现。该项目提供了一组丰富的功能，而这里，将通过RPC项目支持重点关注其远程处理功能。   
+
+
+
     
     
 

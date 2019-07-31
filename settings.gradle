@@ -120,6 +120,9 @@ include 'chapter11:scheduled-task-annotation'//使用注解进行任务调度
 include 'chapter11:async-task'//Spring中异步任务的执行（一般用于第三方调用的任务）
 include 'chapter11:task-executor'//Spring中任务的执行
 
+//Spring远程处理
+include 'chapter12:base-remote'
+
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
     project.buildFileName = "${project.name}.gradle"
