@@ -11,6 +11,7 @@ public class RmiClientConfig {
     public SingerService singerService() {
         HttpInvokerProxyFactoryBean factoryBean = new HttpInvokerProxyFactoryBean();
         factoryBean.setServiceInterface(SingerService.class);
+//service url
         factoryBean.setServiceUrl("http://localhost:8080/remoting/invoker/httpInvoker/singerService");
         factoryBean.afterPropertiesSet();
         return (SingerService) factoryBean.getObject();
