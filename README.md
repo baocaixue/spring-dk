@@ -472,6 +472,24 @@ CREATE TABLE REVINFO (
 ```   
 &nbsp;&nbsp;&nbsp;&nbsp;Spring中通常有两个配置类：一个用于**消息发送器**，一个用于**消息监听器**，以用来连接到此服务器并访问队列。   
 
+### Spring Boot Artemis启动器  
+&nbsp;&nbsp;&nbsp;&nbsp;当Spring Boot检测到Artemis在类路径可用时，可以自动配置javax.jms.ConnectionFactory Bean。嵌入式 JMS代理是自动启动和配置的。Artemis可以在多种模式中使用，并且可以使用application.properties文件中设置特殊Artemis属性进行配置。   
+Artemis能够以native模式使用，可以连接到由Netty协议提供的代理，application.properties文件如下：   
+```properties
+spring.artemis.mode=native
+spring.artemis.host=0.0.0.0
+spring.artemis.port=61617
+spring.artemis.user=isaac
+spring.artemis.password=isaac
+```    
+使用SpringBoot和Artemis创建JMS应用程序最简单方法是使用嵌入式服务器，所需的只是用于保存消息的队列名称，application.properties如下：  
+```properties
+spring.artemis.mode=embedded
+spring.artemis.embedded.queues=isaac
+```   
+
+&nbsp;&nbsp;&nbsp;&nbsp;将spring-boot-starter-artemis声明为依赖，而无需使用@EnableJms来处理用@JmsListener注解的方法。jmsTemplate bean也由Spring Boot创建，默认配置由application.properties文件中设置的属性提供，它不仅可以发送消息，还可以接收消息（使用receive()方法），但这是同步完成的，意味着jmsTemplate会被阻塞。`这就是显式配置JmsListenerContainerFactory bean来创建DefaultMessageListenerContainer的原因——能够以最高连接效率异步的使用消息`。
+
 
 
 
