@@ -1,0 +1,14 @@
+dependencies {
+    compile spring.jms, misc.jms, misc.hornetq
+
+    testCompile spring.test
+}
+jar {
+    archiveName = 'remoting.war'
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class"         : "com.isaac.ch12.JmsHornetQDemo",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}

@@ -455,6 +455,25 @@ CREATE TABLE REVINFO (
 * Spring中使用AMQP：Spring高级消息队列协议（AMQP）项目提供了围绕AMQP的、典型的、类似Spring的抽象以及RabbitMQ实现。该项目提供了一组丰富的功能，而这里，将通过RPC项目支持重点关注其远程处理功能。   
 
 
+### Spring中使用JMS  
+&nbsp;&nbsp;&nbsp;&nbsp;使用面向消息中间件（MQ服务器）是另一种支持**应用程序间通信**的流行方法。消息队列（MQ）服务器的主要优点在于为应用程序集成提供了**异步**和**松耦合**的方式。_在Java世界中，**JMS**是连接到MQ服务器以发送或接收消息的标准_。以下是队列和主题之间差异的主要说明：   
+* **队列**：队列用于支持点对点的消息交换模型。当一名生产者向队列发送消息时，MQ服务器会将消息保留在队列中，并在消费者下次连接时将消息传递给一名消费者（且只能传递给一名消费者）   
+* **主题**：主题用于支持发布-订阅模型。任何数量的客户端都可以订阅主题中的消息。当某条消息到达主题时，MQ服务器会将其发送给订阅了该消息的所有客户端。当多个应用程序对同一条消息（如新闻提要）感兴趣时，此模型是非常有用的  
+[HornetQ](https://hornetq.jboss.org/)配置文件中创建一个队列（位置：config/stand-alone/non-clustered hornetq-jms.xml）:   
+```xml
+<configuration xmlns="urn:hornetq"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema"
+        xsi:schemaLocation="urn:hornetq/schema/hornetq-jms.xsd"
+        ...
+    <queue name="isaac">
+        <entry name="/queue/isaac"/>
+    </queue>
+</configuration>        
+```   
+&nbsp;&nbsp;&nbsp;&nbsp;Spring中通常有两个配置类：一个用于**消息发送器**，一个用于**消息监听器**，以用来连接到此服务器并访问队列。   
+
+
+
 
     
     
