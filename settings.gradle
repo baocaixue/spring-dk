@@ -125,6 +125,7 @@ include 'chapter12:base-remote'
 include 'chapter12:spring-invoker'//通过Spring MVC公开HTTP调用器，HttpInvokerServiceExporter 公开服务 && HttpInvokerProxyFactoryBean 调用服务
 include 'chapter12:jms-hornetq'//JMS HornetQ
 include 'chapter12:boot-jms'//Spring Boot Artemis
+include 'chapter12:rest'//RESTful-WS
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
