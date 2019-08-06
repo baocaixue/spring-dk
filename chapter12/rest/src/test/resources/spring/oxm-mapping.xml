@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--为了支持将返回的歌手信息转换为XML格式，需要使用Castor XML库。下面定义了映射关系-->
-<mapping xmlns="http://castor.exolab.org/">
+<mapping>
     <class name="com.isaac.ch12.entities.Singers">
-        <field name="singers" type="com.isaac.ch12.entities.Singers" collection="arraylist">
+        <field name="singers" type="com.isaac.ch12.entities.Singer" collection="arraylist">
             <bind-xml name="singer"/>
         </field>
     </class>
