@@ -491,6 +491,13 @@ spring.artemis.embedded.queues=isaac
 &nbsp;&nbsp;&nbsp;&nbsp;将spring-boot-starter-artemis声明为依赖，而无需使用@EnableJms来处理用@JmsListener注解的方法。jmsTemplate bean也由Spring Boot创建，默认配置由application.properties文件中设置的属性提供，它不仅可以发送消息，还可以接收消息（使用receive()方法），但这是同步完成的，意味着jmsTemplate会被阻塞。`这就是显式配置JmsListenerContainerFactory bean来创建DefaultMessageListenerContainer的原因——能够以最高连接效率异步的使用消息`。
 
 
+### Spring Security保护RESTful-WS   
+&nbsp;&nbsp;&nbsp;&nbsp;使用Spring Security来保护RESTful-WS共分为三步   
+1. 首先，需要在Web应用程序部署描述符（web.xml）中添加一个名为**springSecurityFilterChain**的安全过滤器。而纯Java配置中，可以将过滤器替换为扩展了**AbstractSecurityWebApplicationInitializer**的类。此类注册了DelegatingFilterProxy，以便在其他注册的过滤器之前使用springSecurityFilterChain。  
+2. 然后，需要为安全性添加一个Spring配置类，用于声明谁可以访问应用程序。该类使用`@EnableWebSecurity`进行注解，从而在Spring Web应用程序中启用安全行为。并在configure(..)方法中声明需要保护的资源，以及保护的方式。在configureGlobal(..)中定义身份验证信息，可以通过数据库或LDAP查找完成身份验证
+3. 最后，要将SecurityConfig添加到根上下文，以及rest应用程序上下文
+
+
 
 
     
