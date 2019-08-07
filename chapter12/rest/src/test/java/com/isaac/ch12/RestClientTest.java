@@ -72,7 +72,7 @@ public class RestClientTest {
     @Test
     public void testUpdate() {
         logger.info("--> Testing update singer by id : 1");
-        Singer singer = restTemplate.getForObject(URL_UPDATE_SINGER, Singer.class, 1);
+        Singer singer = restTemplate.getForObject(URL_GET_SINGER_BY_ID, Singer.class, 1);
         assertNotNull(singer);
         singer.setFirstName("John Clayton");
         restTemplate.put(URL_UPDATE_SINGER, singer);
