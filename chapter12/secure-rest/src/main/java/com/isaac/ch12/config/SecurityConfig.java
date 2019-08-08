@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth)  throws Exception {
         try {
-            auth.inMemoryAuthentication().withUser("isaac").password("isaac").roles("ADMIN");
+            auth.inMemoryAuthentication().withUser("isaac").password("isaac").roles("ADMIN").and().passwordEncoder(new CustomPasswordEncoder());
         } catch (Exception e) {
             logger.error("Could not configure authentication!", e);
         }
@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)//允许配置是否在身份验证时创建HTTP会话，RESTful-WS是无状态的所以不创建会话
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
+                //.antMatchers("/**").permitAll()
                 .antMatchers("/rest/**").hasRole("ADMIN").anyRequest().authenticated()
                 .and()
                 .formLogin()
