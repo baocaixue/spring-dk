@@ -4,7 +4,6 @@ dependencies {
     testCompile spring.test
 }
 jar {
-    archiveName = 'remoting.war'
     manifest {
         attributes("Created-By"      : "Isaac Bao",
                 "Specification-Title": "spring-dk",
