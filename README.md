@@ -495,7 +495,13 @@ spring.artemis.embedded.queues=isaac
 &nbsp;&nbsp;&nbsp;&nbsp;使用Spring Security来保护RESTful-WS共分为三步   
 1. 首先，需要在Web应用程序部署描述符（web.xml）中添加一个名为**springSecurityFilterChain**的安全过滤器。而纯Java配置中，可以将过滤器替换为扩展了**AbstractSecurityWebApplicationInitializer**的类。此类注册了DelegatingFilterProxy，以便在其他注册的过滤器之前使用springSecurityFilterChain。  
 2. 然后，需要为安全性添加一个Spring配置类，用于声明谁可以访问应用程序。该类使用`@EnableWebSecurity`进行注解，从而在Spring Web应用程序中启用安全行为。并在configure(..)方法中声明需要保护的资源，以及保护的方式。在configureGlobal(..)中定义身份验证信息，可以通过数据库或LDAP查找完成身份验证
-3. 最后，要将SecurityConfig添加到根上下文，以及rest应用程序上下文
+3. 最后，要将SecurityConfig添加到根上下文，以及rest应用程序上下文   
+
+### AMQP  
+&nbsp;&nbsp;&nbsp;&nbsp;远程处理也可以通过使用以高级队列协议（AMQP）作为传输协议的远程过程调用（RPC）通信来完成。AMQP是实现面向消息中间件（MOM）的开放标准协议   
+&nbsp;&nbsp;&nbsp;&nbsp;`JMS应用程序适用于任何操作系统环境，但仅支持Java平台。所以，所有通信应用程序必须用Java开发。AMQP标准可用于开发用于多种语言应用程序的通信`  
+&nbsp;&nbsp;&nbsp;&nbsp;与使用JMS相似，AMQP也使用消息代理来交换消息。可以使用RabbitMQ作为AMQP服务器。Spring本身并没有在核心框架中提供远程处理功能，相反，而是由一个名为Spring AMQP的姊妹项目来处理，将其用作底层通信API。Spring AMQP项目提供了关于AMQP的基本抽象以及与RabbitMQ进行通信的实现。  
+&nbsp;&nbsp;&nbsp;&nbsp;Spring AMQP项目由两部分组成：spring-amqp是基本抽象，springrabbit是RabbitMQ实现。[RabbitMQ](https://www.rabbitmq.com/download.html)
 
 
 

@@ -128,6 +128,8 @@ include 'chapter12:boot-jms'//Spring Boot Artemis
 include 'chapter12:rest'//RESTful-WS
 include 'chapter12:secure-rest'//使用Spring Security来保护RESTful-WS
 include 'chapter12:boot-rest'//Spring Boot开发rest
+include 'chapter12:amqp-rpc'
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
