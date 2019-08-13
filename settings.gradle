@@ -129,6 +129,7 @@ include 'chapter12:rest'//RESTful-WS
 include 'chapter12:secure-rest'//使用Spring Security来保护RESTful-WS
 include 'chapter12:boot-rest'//Spring Boot开发rest
 include 'chapter12:amqp-rpc'
+include 'chapter12:boot-amqp'
 
 
 //check if the modules have gradle configuration files
