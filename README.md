@@ -5,6 +5,25 @@ This repository is a reading note according to [Pro Spring 5th Edition](http://w
 https://github.com/Apress/pro-spring-5
 
 ****
+# Catalog  
+- [3 Spring IOC DI](#[Chapter03 IOC&&DI](./chapter03))  
+- [4 Spring配置和SpringBoot](#[Chapter04 Spring Config And Spring Boot](./chapter04))
+- [5 Spring AOP](#[chapter05 Spring AOP](./chapter05))
+- [6 Spring JDBC](#[chapter06 Spring JDBC](./chapter06))
+- [7 Spring中使用Hibernate](#[chapter07 Hibernate](./chapter07))
+- [8 Spring中使用JPA2](#[chapter08 JPA2](./chapter08))
+- [9 事务管理](#[chapter09 Transaction](./chapter09))
+- [10 类型转换和格式化进行验证](#[chapter10 Conversion And Validator](./chapter10))
+- [11 任务调度](#[chapter11 TaskScheduler](./chapter11))
+- [12 Spring远程处理](#[chapter12 Spring Remoting](./chapter12))
+- [13 Spring测试](#[chapter13 Spring Test](./chapter13))
+- [14 Spring中脚本支持]()
+- [15 应用程序监控]()
+- [16 Web应用程序]()
+- [17 WebSocket]()
+- [18 Spring项目：批处理、集成和XD等]()
+
+****
 
 # Spring模块
 | 模块 | 描述 |  
@@ -36,7 +55,7 @@ https://github.com/Apress/pro-spring-5
 ## [Chapter03 IOC&&DI](./chapter03)  
   - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java)  
 ***
-## [Chapter04 Spring Config && Spring Boot](./chapter04)
+## [Chapter04 Spring Config And Spring Boot](./chapter04)
 ### Bean生命周期——bean创建
  * `创建解析顺序：Spring首先调用使用了@PostConstruct注解的方法，然后调用afterPropertiesSet()方法，最后调用配置文件中指定的初始化方法`
  * （1）首先调用构造函数来创建bean
@@ -202,7 +221,7 @@ https://github.com/Apress/pro-spring-5
 - 使用注解来设置JDBC DAO
 
 ***
-## [chapter07 Spring 中使用 Hibernate](./chapter07)
+## [chapter07 Hibernate](./chapter07)
 ***
 问题：
 ```text
@@ -219,7 +238,7 @@ Caused by: org.hibernate.HibernateException: Could not obtain transaction-synchr
 解决启用注解声明事务@EnableTransactionManagement,[详见](https://stackoverflow.com/questions/26203446/spring-hibernate-could-not-obtain-transaction-synchronized-session-for-current)  
 
 ***
-## [chapter08 在Spring中使用JPA2进行数据访问](./chapter08)
+## [chapter08 JPA2](./chapter08)
 &nbsp;&nbsp;&nbsp;&nbsp;在使用ORM方法实现数据访问逻辑时使用Hibernate和Spring，其中，Hibernate的使用方式是：配置SessionFactory，使用Session接口进行数据操作。但是，还有另一种Hibernate的使用方式：使用Hibernate作为**标准Java持久化API（JPA）** 的持久化提供程序  
 &nbsp;&nbsp;&nbsp;&nbsp;JPA提供了标准化的概念，可以轻松在JPA持久化提供程序（如Hibernate、EclipseLink、Oracle TopLink和Apache OpenJpa）之间转换。  
 
@@ -294,7 +313,7 @@ CREATE TABLE REVINFO (
 )
 ```   
 ***
-## [chapter09 事务管理](./chapter09)  
+## [chapter09 Transaction](./chapter09)  
 &nbsp;&nbsp;&nbsp;&nbsp;容器管理事务（CMT）以声明方式管理事务 && 选择Bean管理事务（BMT）以编程式管理事务（Java Transaction API(JTA)进行编程）   
 * Spring事务抽象层：事务抽象类的基本组件，这些类来控制事务的属性
 * 声明式事务：XML配置文件及Java注解
@@ -379,7 +398,7 @@ CREATE TABLE REVINFO (
 &nbsp;&nbsp;&nbsp;&nbsp;全局事务一个主要特征是保证了**原子性**。还包括应该由事务管理器处理的复杂协调和同步逻辑。在Java中，JTA是实现全局事务的事实标准   
 
 ***
-## [chapter10 使用类型转换和格式化进行验证](./chapter10)   
+## [chapter10 Conversion And Validator](./chapter10)   
 * Spring类型转换系统和Formatter服务提供程序接口（SPI）：通用类型转换系统和Formatter SPI，来替代以前的PropertyEditor支持，以及它们如何在任何Java类型之间进行转换   
 * Spring中的验证：Spring如何支持域对象验证。Spring自己的Validator接口，以及重点关注JSR-349（bean验证）支持   
 
@@ -410,7 +429,7 @@ CREATE TABLE REVINFO (
     * 如果使用的是JPA2，那么提供程序会在持久化之前自动对实体执行JSR-349验证，从而提供另一层保护   
     
 *** 
-## [chapter11 任务调度](./chapter11)   
+## [chapter11 TaskScheduler](./chapter11)   
 &nbsp;&nbsp;&nbsp;&nbsp;任务调度主要由三部分组成：任务（即需要在特定时间运行或定期运行的业务逻辑块）、触发器（指定任务应该执行的条件）以及调度程序（根据来自触发器的信息执行任务）。   
 * Spring中的任务调度：Spring3中引入的TaskScheduler抽象。调度的场景，如固定间隔调度和cron表达式
 * 异步任务执行：在Spring中使用@Async注解来异步执行任务
@@ -439,7 +458,7 @@ CREATE TABLE REVINFO (
 
 
 ***
-## [chapter12 Spring远程处理](./chapter12)   
+## [chapter12 Spring Remoting](./chapter12)   
 ```text
     远程处理概述：
     自Java首次创建以来，就一直支持远程处理。在早期（Java1.x），大多数远程需求是通过使用传统的TCP套接字或Java远程方法调用（Java Remote Method Invocation，RMI）来实现的。
@@ -503,7 +522,7 @@ spring.artemis.embedded.queues=isaac
 &nbsp;&nbsp;&nbsp;&nbsp;与使用JMS相似，AMQP也使用消息代理来交换消息。可以使用RabbitMQ作为AMQP服务器。Spring本身并没有在核心框架中提供远程处理功能，相反，而是由一个名为Spring AMQP的姊妹项目来处理，将其用作底层通信API。Spring AMQP项目提供了关于AMQP的基本抽象以及与RabbitMQ进行通信的实现。  
 &nbsp;&nbsp;&nbsp;&nbsp;Spring AMQP项目由两部分组成：spring-amqp是基本抽象，springrabbit是RabbitMQ实现。[RabbitMQ](https://www.rabbitmq.com/download.html)
 
-
+##[chapter13 Spring Test](./chapter13)
 
 
     
