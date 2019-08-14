@@ -6,17 +6,17 @@ https://github.com/Apress/pro-spring-5
 
 ****
 # Catalog  
-- [3 IOC DI](#chapter03-ioc-di) ------------[👉](./chapter03)
-- [4 Spring配置和SpringBoot](#[Chapter04 Spring Config And Spring Boot](./chapter04))
-- [5 Spring AOP](#[chapter05 Spring AOP](./chapter05))
-- [6 Spring JDBC](#[chapter06 Spring JDBC](./chapter06))
-- [7 Spring中使用Hibernate](#[chapter07 Hibernate](./chapter07))
-- [8 Spring中使用JPA2](#[chapter08 JPA2](./chapter08))
-- [9 事务管理](#[chapter09 Transaction](./chapter09))
-- [10 类型转换和格式化进行验证](#[chapter10 Conversion And Validator](./chapter10))
-- [11 任务调度](#[chapter11 TaskScheduler](./chapter11))
-- [12 Spring远程处理](#[chapter12 Spring Remoting](./chapter12))
-- [13 Spring测试](#[chapter13 Spring Test](./chapter13))
+- [3 IOC DI](#Chapter03-ioc-di) ------------[👉](./chapter03)
+- [4 Spring配置和SpringBoot](#Chapter04-Spring-Config-And-Spring-Boot) ------------[👉](./chapter04)
+- [5 Spring AOP](#Chapter05-Spring-AOP) ------------[👉](./chapter05)
+- [6 Spring JDBC](#Chapter06-Spring-JDBC) ------------[👉](./chapter06)
+- [7 Spring中使用Hibernate](#Chapter07-Hibernate) ------------[👉](./chapter07)
+- [8 Spring中使用JPA2](#Chapter08-JPA2) ------------[👉](./chapter08)
+- [9 事务管理](#Chapter09-Transaction) ------------[👉](./chapter09)
+- [10 类型转换和格式化进行验证](#Chapter10-Conversion-And-Validator) ------------[👉](./chapter10)
+- [11 任务调度](#Chapter11-TaskScheduler) ------------[👉](./chapter11)
+- [12 Spring远程处理](#Chapter12-Spring-Remoting) ------------[👉](./chapter12)
+- [13 Spring测试](#Chapter13-Spring-Test) ------------[👉](./chapter13)
 - [14 Spring中脚本支持]()
 - [15 应用程序监控]()
 - [16 Web应用程序]()
@@ -52,10 +52,10 @@ https://github.com/Apress/pro-spring-5
 
 ## Note  
 ***
-## chapter03-ioc-di
+## Chapter03-ioc-di
   - [ApplicationContextAware](./chapter03/bean-autowiring/src/main/java/com/isaac/ch3/annotated/Singer.java)  
 ***
-## [Chapter04 Spring Config And Spring Boot](./chapter04)
+## Chapter04-Spring-Config-And-Spring-Boot
 ### Bean生命周期——bean创建
  * `创建解析顺序：Spring首先调用使用了@PostConstruct注解的方法，然后调用afterPropertiesSet()方法，最后调用配置文件中指定的初始化方法`
  * （1）首先调用构造函数来创建bean
@@ -95,7 +95,7 @@ https://github.com/Apress/pro-spring-5
 | URLEditor | 将URL的字符串表示形式转换为java.net.URL的实例  
     
 ***    
-## [chapter05 Spring AOP](./chapter05) 
+## Chapter05-Spring-AOP 
 `不能通知最终的类，它们不能被覆盖，不能被代理`   
 ### AOP概念
 * 连接点：应用程序执行期间明确定义的一个点。连接点的典型示例包括方法的调用、方法调用本身、类初始化和对象实例化。连接点是AOP的核心概念，并且定义了在应用程序中可以使用AOP插入其他逻辑的点
@@ -193,7 +193,7 @@ https://github.com/Apress/pro-spring-5
   &nbsp;&nbsp;&nbsp;&nbsp;当使用标准通知（不是引入）时，可能会将相同的通知实例用于多个对象。Spring文档将其称为`基于类型的声明周期（per-class life cycle）`，可以为许多类使用单个通知实例。对于引入来说，引入通知构成了被通知对象的状态的一部分，因此，针对每个被通知的对象都有一个独立的引入实例。这被称为`基于实例的生命周期（per-instance life cycle）`。因为必须确保每个被通知对象都有一个独立的引入实例，所以通常最好创建DefaultIntroductionAdvisor的一个子类，它负责创建引入通知。
   
 ***
-## [chapter06 Spring JDBC](./chapter06)  
+## Chapter06-Spring-JDBC
 &nbsp;&nbsp;&nbsp;&nbsp;lambda表达式是使用Spring JDBC支持的理想方式
 
 ### Spring JDBC基础结构
@@ -221,7 +221,7 @@ https://github.com/Apress/pro-spring-5
 - 使用注解来设置JDBC DAO
 
 ***
-## [chapter07 Hibernate](./chapter07)
+## Chapter07-Hibernate
 ***
 问题：
 ```text
@@ -238,7 +238,7 @@ Caused by: org.hibernate.HibernateException: Could not obtain transaction-synchr
 解决启用注解声明事务@EnableTransactionManagement,[详见](https://stackoverflow.com/questions/26203446/spring-hibernate-could-not-obtain-transaction-synchronized-session-for-current)  
 
 ***
-## [chapter08 JPA2](./chapter08)
+## Chapter08-JPA2
 &nbsp;&nbsp;&nbsp;&nbsp;在使用ORM方法实现数据访问逻辑时使用Hibernate和Spring，其中，Hibernate的使用方式是：配置SessionFactory，使用Session接口进行数据操作。但是，还有另一种Hibernate的使用方式：使用Hibernate作为**标准Java持久化API（JPA）** 的持久化提供程序  
 &nbsp;&nbsp;&nbsp;&nbsp;JPA提供了标准化的概念，可以轻松在JPA持久化提供程序（如Hibernate、EclipseLink、Oracle TopLink和Apache OpenJpa）之间转换。  
 
@@ -313,7 +313,7 @@ CREATE TABLE REVINFO (
 )
 ```   
 ***
-## [chapter09 Transaction](./chapter09)  
+## Chapter09-Transaction
 &nbsp;&nbsp;&nbsp;&nbsp;容器管理事务（CMT）以声明方式管理事务 && 选择Bean管理事务（BMT）以编程式管理事务（Java Transaction API(JTA)进行编程）   
 * Spring事务抽象层：事务抽象类的基本组件，这些类来控制事务的属性
 * 声明式事务：XML配置文件及Java注解
@@ -398,7 +398,7 @@ CREATE TABLE REVINFO (
 &nbsp;&nbsp;&nbsp;&nbsp;全局事务一个主要特征是保证了**原子性**。还包括应该由事务管理器处理的复杂协调和同步逻辑。在Java中，JTA是实现全局事务的事实标准   
 
 ***
-## [chapter10 Conversion And Validator](./chapter10)   
+## Chapter10-Conversion-And-Validator
 * Spring类型转换系统和Formatter服务提供程序接口（SPI）：通用类型转换系统和Formatter SPI，来替代以前的PropertyEditor支持，以及它们如何在任何Java类型之间进行转换   
 * Spring中的验证：Spring如何支持域对象验证。Spring自己的Validator接口，以及重点关注JSR-349（bean验证）支持   
 
@@ -429,7 +429,7 @@ CREATE TABLE REVINFO (
     * 如果使用的是JPA2，那么提供程序会在持久化之前自动对实体执行JSR-349验证，从而提供另一层保护   
     
 *** 
-## [chapter11 TaskScheduler](./chapter11)   
+## Chapter11-TaskScheduler  
 &nbsp;&nbsp;&nbsp;&nbsp;任务调度主要由三部分组成：任务（即需要在特定时间运行或定期运行的业务逻辑块）、触发器（指定任务应该执行的条件）以及调度程序（根据来自触发器的信息执行任务）。   
 * Spring中的任务调度：Spring3中引入的TaskScheduler抽象。调度的场景，如固定间隔调度和cron表达式
 * 异步任务执行：在Spring中使用@Async注解来异步执行任务
@@ -458,7 +458,7 @@ CREATE TABLE REVINFO (
 
 
 ***
-## [chapter12 Spring Remoting](./chapter12)   
+## Chapter12-Spring-Remoting  
 ```text
     远程处理概述：
     自Java首次创建以来，就一直支持远程处理。在早期（Java1.x），大多数远程需求是通过使用传统的TCP套接字或Java远程方法调用（Java Remote Method Invocation，RMI）来实现的。
@@ -522,7 +522,7 @@ spring.artemis.embedded.queues=isaac
 &nbsp;&nbsp;&nbsp;&nbsp;与使用JMS相似，AMQP也使用消息代理来交换消息。可以使用RabbitMQ作为AMQP服务器。Spring本身并没有在核心框架中提供远程处理功能，相反，而是由一个名为Spring AMQP的姊妹项目来处理，将其用作底层通信API。Spring AMQP项目提供了关于AMQP的基本抽象以及与RabbitMQ进行通信的实现。  
 &nbsp;&nbsp;&nbsp;&nbsp;Spring AMQP项目由两部分组成：spring-amqp是基本抽象，springrabbit是RabbitMQ实现。[RabbitMQ](https://www.rabbitmq.com/download.html)
 
-##[chapter13 Spring Test](./chapter13)
+## Chapter13-Spring-Test  
 
 
     
