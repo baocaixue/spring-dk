@@ -6,7 +6,7 @@ https://github.com/Apress/pro-spring-5
 
 ****
 # Catalog  
-- [3 Spring IOC DI](#[Chapter03 IOC&&DI](./chapter03))  
+- [[Chapter03 IOC&&DI](./chapter03)](#-chapter03-ioc--di---chapter03-)
 - [4 Spring配置和SpringBoot](#[Chapter04 Spring Config And Spring Boot](./chapter04))
 - [5 Spring AOP](#[chapter05 Spring AOP](./chapter05))
 - [6 Spring JDBC](#[chapter06 Spring JDBC](./chapter06))
