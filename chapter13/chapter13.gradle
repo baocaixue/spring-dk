@@ -1,0 +1,17 @@
+subprojects {
+    group 'com.apress.prospring5.ch13'
+    apply plugin: 'java'
+
+    task copyDependencies(type: Copy) {
+        from configurations.compile
+        into 'build/libs'
+    }
+
+    dependencies {
+        if (!project.name.contains("junit5")) {
+            compile spring.context, spring.webmvc, misc.slf4jJcl, misc.logback, misc.lang3, misc.guava
+            testCompile testing.junit, testing.mockito, spring.test, testing.dbunit
+        }
+        compileOnly misc.lombok
+    }
+}

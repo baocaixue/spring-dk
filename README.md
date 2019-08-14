@@ -536,7 +536,36 @@ spring.artemis.embedded.queues=isaac
 ***
 
 ## Chapter13-Spring-Test  
+&nbsp;&nbsp;&nbsp;&nbsp;
 
+### 测试类别介绍  
+
+| 测试类别 | 描述 | 常用工具    
+|---|--- |--- 
+| 逻辑单元测试 | 逻辑单元测试需要一个对象并自行测试，而不必担心它在周围系统中所扮演的角色 | 单元测试：JUnit、TestNG  模拟对象：Mockito、EasyMock  
+| 集成单元测试 | 集成单元测试专注于在“接近真实”的环境中测试组件之间的交互。这些测试将执行与容器（嵌入式数据库、Web容器等）的交互 | 嵌入式数据库：H2  数据库测试：DbUnit  内存Web容器：Jetty  
+| 前端单元测试 | 前端单元测试侧重于测试用户界面。目标是确保每个用户界面对用户的操作做出反应并按预期产生输出给用户 | Selenium  
+| 持续构建和代码质量测试 | 应用程序代码库应定期构建，以确保代码质量符合标准（例如，在适当的地方写上注释，没有空的异常捕获块等）。此外，测试的覆盖范围应尽可能广以确保开发的所有代码行都经过测试 | 代码质量：PMD、Check-style、FindBugs、Sonar  测试覆盖范围：Cobertura、EclEmma  构建工具：Gradle、Maven  持续构建：Hudson、Jenkins  
+| 系统集成测试 | 系统集成测试验证新系统中所有程序之间以及新系统与所有外部接口之间通信的准确性。系统集成测试还必须证明新系统可以在操作环境中根据功能规范有效地执行，同时不会对其他系统产生不利的影响 | IBM Rational Functional Tester、HP Unified Functional Testing  
+| 系统质量测试 | 系统质量测试旨在确保所开发的应用程序满足那些非功能性需求。在大多数情况下，主要是测试应用程序的性能，以确保满足系统的并发用户和工作负载的目标需求。其他非功能性需求包括安全性、高可用性功能等 | Apache JMeter、HP LoadRunner  
+| 用户验收测试 | 用户验收测试模拟新系统的实际工作条件，包括用户手册和程序。大量的用户参与这个测试阶段，从而为用户提供操作新系统的宝贵经验。此外，还有利于程序员或设计人员了解新程序的用户体验。这种联合参与确保用户和操作人员都赞成对系统所做的修改 | IBM Rational TextManager、HP Quality Center  
+
+### 使用Spring测试注解  
+| 注解 | 描述  
+|---|---  
+| @ContextConfiguration | 类级注解，用于确定如何为集成测试加载和配置ApplicationContext  
+| @WebAppConfiguration | 类级注解，用于指示加载的ApplicationContext应该是WebApplicationContext  
+| @ContextHierarchy | 类级注解，用于指示哪个bean配置文件应该处理活动状态  
+| @DirtiesContext | 类级和方法级注解，用于指示上下文在执行测试期间以某种方式被修改或损坏，并且应该关闭和重新构建以供后续测试  
+| @TestExecutionListeners | 类级注解，用于配置应该使用TestContextManager注册时TestExecutionListeners  
+| @TransactionConfiguration | 类级注解，用于指示事务配置，例如回滚设置和事务管理器（假设期望的事务管理器没有名为transactionManager的bean）  
+| @Rollback | 类级和方法级注解，用于指示是否应该针对所注解的方法回滚事务。此外，它还是用于测试类的默认设置的类级注释  
+| @BeforeTransaction | 方法级注解，指示在为使用@Transactional注解标记的测试方法启动事务之前，应该调用@BeforeTransaction所注解的方法    
+| @AfterTransaction | 方法级注解，指示在为使用@Transactional注解标记的测试方法结束事务之后，应该调用@AfterTransaction所注解的方法  
+| @IfProfileValue | 类级和方法级注解，用于指示应该为一组特定的环境条件启用测试方法  
+| @ProfileValueSourceConfiguration | 类级注解，用于指定@IfProfileValue所使用的ProfileValueSource。如果该注解未在测试中声明，则将SystemProfileValueSource用作默认值  
+| @Timed | 方法级注解，用于指示测试必须在指定的时间段内完成  
+| @Repeat | 方法级注解，用于指示注解的测试方法应该重复指定的次数  
 
     
     

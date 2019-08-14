@@ -131,6 +131,9 @@ include 'chapter12:boot-rest'//Spring Boot开发rest
 include 'chapter12:amqp-rpc'
 include 'chapter12:boot-amqp'
 
+//Spring测试
+include 'chapter13:base-test'
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
