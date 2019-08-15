@@ -13,5 +13,6 @@ subprojects {
             testCompile testing.junit, testing.mockito, spring.test, testing.dbunit
         }
         compileOnly misc.lombok
+        testCompileOnly misc.lombok
     }
 }
