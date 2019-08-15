@@ -1,0 +1,13 @@
+dependencies {
+    compile project(':chapter13:base-test')
+    compile  misc.poi,
+            hibernate.validator, misc.validation, misc.javaEl, misc.glassfishEl
+}
+
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}
