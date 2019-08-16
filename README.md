@@ -1,5 +1,5 @@
 # Spring is a wonderful season  
-> [![Build Status](https://travis-ci.org/baocaixue/spring-dk.svg?branch=master)](https://travis-ci.org/baocaixue/spring-dk)
+> [![Build Status](https://travis-ci.org/baocaixue/spring-dk.svg?branch=master)](https://travis-ci.org/baocaixue/spring-dk) [![Gitter](https://badges.gitter.im/spring-dk/community.svg)](https://gitter.im/spring-dk/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 This repository is a reading note according to [Pro Spring 5th Edition](http://www.apress.com/9781484228074) by Iuliana Cosmina, Rob Harrop, Chris Schaefer, Clarence Ho (Apress, 2017). 
 
