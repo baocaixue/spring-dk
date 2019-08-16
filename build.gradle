@@ -195,7 +195,3 @@ subprojects {
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
-
-task update(type: Wrapper) {
-    gradleVersion = '5.4'
-}
