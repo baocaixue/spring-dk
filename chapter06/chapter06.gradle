@@ -10,8 +10,13 @@ subprojects {
 
     dependencies {
         if (!project.name.contains("boot")) {
-            compile spring.context, spring.jdbc, misc.slf4jJcl, misc.logback, db.dbcp2, misc.lang3, misc.lombok
+            compile spring.context, spring.jdbc, misc.slf4jJcl, misc.logback, db.dbcp2, misc.lang3
         }
         testCompile testing.junit
+        
+        compileOnly misc.lombok
+        annotationProcessor misc.lombok
+        testAnnotationProcessor misc.lombok
+        testCompileOnly misc.lombok
     }
 }
