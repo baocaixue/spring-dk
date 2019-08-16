@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class DbConfigTest {
     private static Logger logger = LoggerFactory.getLogger(DbConfigTest.class);
 
-    @Test
+    //@Test
     public void testXmlConfigDataSource() {
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
         ctx.load("classpath:spring/datasource-dbcp.xml");
@@ -34,7 +34,7 @@ public class DbConfigTest {
         ctx.close();
     }
 
-    @Test
+    //@Test
     public void testJavaConfigDataSource() {
         GenericApplicationContext ctx = new AnnotationConfigApplicationContext(DbConfig.class);
 
