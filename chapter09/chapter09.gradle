@@ -21,7 +21,7 @@ subprojects {
         }
         testCompile testing.junit
         
-        ompileOnly misc.lombok
+        compileOnly misc.lombok
         annotationProcessor misc.lombok
         testAnnotationProcessor misc.lombok
         testCompileOnly misc.lombok
