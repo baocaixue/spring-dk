@@ -20,34 +20,34 @@ public class AnnotationJdbcTest {
     private GenericApplicationContext ctx;
     private SingerDao singerDao;
 
-    @Before
+    //@Before
     public void setUp() {
         ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         singerDao = ctx.getBean("singerDao", SingerDao.class);
         assertNotNull(singerDao);
     }
 
-    @Test
+    //@Test
     public void testFindAll(){
         List<Singer> singers = singerDao.findAll();
         assertNotEquals(0, singers.size());
         listSingers(singers);
     }
 
-    @Test
+    //@Test
     public void testFindByFirstName() {
         List<Singer> john = singerDao.findByFirstName("John");
         assertEquals(1, john.size());
         listSingers(john);
     }
 
-    @Test
+    //@Test
     public void testFindFirstNameById() {
         String firstName = singerDao.findFirstNameById(1L);
         assertEquals("John", firstName);
     }
 
-    @Test
+    //@Test
     public void testInsertSinger() {
         Singer isaac = new Singer();
         isaac.setFirstName("Isaac");
@@ -57,7 +57,7 @@ public class AnnotationJdbcTest {
         assertNotEquals(0L, isaac.getId().longValue());
     }
 
-    @Test
+    //@Test
     public void testUpdate() {
         Singer isaac = new Singer();
         isaac.setId(4L);
@@ -67,7 +67,7 @@ public class AnnotationJdbcTest {
         singerDao.update(isaac);
     }
 
-    @Test
+    //@Test
     public void testDelete() {
         singerDao.delete(5L);
     }
@@ -83,7 +83,7 @@ public class AnnotationJdbcTest {
         });
     }
 
-    @After
+    //After
     public void close() {
         ctx.close();
     }
