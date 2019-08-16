@@ -14,16 +14,16 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = RestClientConfig.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = RestClientConfig.class)
 public class RestClientTest {
     private final Logger logger = LoggerFactory.getLogger(RestClientTest.class);
     private static final String URL_GET_ALL_SINGERS = "http://localhost:8080/secure-rest/rest/singer/listdata";
 
-    @Autowired
+    //@Autowired
     private RestTemplate restTemplate;
 
-    @Test
+    //@Test
     public void testFindAll() {
         logger.info("--> Testing retrieve all singers");
         Singers singers = restTemplate.getForObject(URL_GET_ALL_SINGERS, Singers.class);
