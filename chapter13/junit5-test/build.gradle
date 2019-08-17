@@ -1,0 +1,15 @@
+dependencies {
+    compile project(':chapter13:base-test')
+    testCompile testing.junit5Engine, testing.mockito, spring.test
+}
+test {
+	useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac",
+                "Specification-Title": "spring-dk",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}

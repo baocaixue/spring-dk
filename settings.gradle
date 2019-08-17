@@ -135,6 +135,7 @@ include 'chapter12:boot-amqp'
 include 'chapter13:base-test'
 include 'chapter13:integration-test'//集成测试
 include 'chapter13:mvc-unit-test'//单元测试SpringMVC控制器
+include 'chapter13:junit5-test'
 
 
 //check if the modules have gradle configuration files
