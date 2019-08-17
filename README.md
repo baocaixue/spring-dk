@@ -18,7 +18,7 @@ https://github.com/Apress/pro-spring-5
 - [11 任务调度](#Chapter11-TaskScheduler)...........................................[Task-Scheduler](./chapter11)
 - [12 Spring远程处理](#Chapter12-Spring-Remoting)...........................................[Remoting](./chapter12)
 - [13 Spring测试](#Chapter13-Spring-Test) ...........................................[Test](./chapter13)
-- [14 Spring中脚本支持]()
+- [14 Spring中脚本支持](#Chapter14-Spring-Script) ...........................................[Script](./chapter14)
 - [15 应用程序监控]()
 - [16 Web应用程序]()
 - [17 WebSocket]()
@@ -555,8 +555,22 @@ spring.artemis.embedded.queues=isaac
 | @IfProfileValue | 类级和方法级注解，用于指示应该为一组特定的环境条件启用测试方法  
 | @ProfileValueSourceConfiguration | 类级注解，用于指定@IfProfileValue所使用的ProfileValueSource。如果该注解未在测试中声明，则将SystemProfileValueSource用作默认值  
 | @Timed | 方法级注解，用于指示测试必须在指定的时间段内完成  
-| @Repeat | 方法级注解，用于指示注解的测试方法应该重复指定的次数  
+| @Repeat | 方法级注解，用于指示注解的测试方法应该重复指定的次数    
 
     
-    
+***  
+
+## Chapter14-Spring-Script  
+&nbsp;&nbsp;&nbsp;&nbsp;Spring对脚本语言的支持：  
+* Java中的脚本支持：在JCP中，JSR-223（用于Java平台的脚本）支持Java中的脚本语言；自SE6以来，它就可以在Java中使用。
+* Groovy：与Java一起使用的最流行脚本语言之一。
+* 在Spring中使用Groovy：Spring框架为脚本语言提供的全面支持。自3.1版本以来，Spring提供对Groovy、JRuby和BeanShell的开箱即用支持。  
+```text
+Java存在的缺点，如静态类型的局限性，以及语言结构的局限性和在大规模并行处理等领域缺乏全面的支持。
+而脚本语言，譬如下面所示：
+Scala将函数式编程和OO模式相结合，并支持具有Actor和消息传递等概念的更全面且可扩展的并发编程模型
+Groovy提供了一个简化的编程模型，并支持特定与领域语言（DSL）的实现
+```  
+> 闭包：脚本语言带来的一个重要概念就是闭包。闭包（closure）是封装到对象中的一段代码（或块）。闭包是可执行的，可以接收参数并返回对象和值。另外，闭包还是普通的对象，可以通过引用传递。  
+
 

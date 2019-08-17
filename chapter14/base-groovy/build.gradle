@@ -1,0 +1,13 @@
+apply plugin: 'groovy'
+
+dependencies{
+    compile misc.groovy
+}
+
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}
