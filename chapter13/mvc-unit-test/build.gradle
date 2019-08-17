@@ -1,0 +1,12 @@
+dependencies {
+    compile project(':chapter13:base-test')
+    testCompile testing.jmock
+}
+
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}

@@ -1,6 +1,9 @@
 package com.isaac.ch13.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +12,9 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "singer")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Singer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
