@@ -139,7 +139,7 @@ include 'chapter13:junit5-test'
 
 //Spring脚本支持
 include 'chapter14:base-groovy'
-
+include 'chapter14:groovy-spring'
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->

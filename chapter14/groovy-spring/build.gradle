@@ -1,0 +1,28 @@
+apply plugin: 'groovy'
+
+dependencies{
+    compile spring.context, misc.groovy
+}
+
+jar {
+    manifest {
+        attributes("Created-By"      : "Isaac Bao",
+                "Specification-Title": "spring-dk",
+                "Main-Class"         : "com.isaac.ch14.RuleEngineDemo",
+                "Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+    }
+}
+
+sourceSets {
+    main {
+        // no source dirs for the java compiler
+        java { srcDirs = [] }
+        // compile   everything in src/ with groovy
+        groovy { srcDirs = ["src/main/java", "src/main/groovy", "rules"] }  // (*)
+    }
+}
+
+task ruleExec(type:JavaExec) {
+    main = 'com.isaac.ch14.RuleEngineDemo'
+    classpath sourceSets.main.runtimeClasspath
+}
