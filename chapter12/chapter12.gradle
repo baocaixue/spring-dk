@@ -10,6 +10,7 @@ subprojects {
 
     dependencies {
         //we specify these dependencies for all submodules, except the boot module, that defines its own
+        if(project.name != 'base-remote'){
         if (!project.name.contains("boot")) {
             compile (spring.contextSupport) {
                 exclude  module: 'spring-beans'
@@ -23,5 +24,6 @@ subprojects {
         annotationProcessor misc.lombok
         testAnnotationProcessor misc.lombok
         testCompileOnly misc.lombok
+        }
     }
 }

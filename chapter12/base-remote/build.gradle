@@ -1,5 +1,14 @@
+apply plugin: 'java'
+
 dependencies {
     compile spring.data, db.h2
+    compile misc.slf4jJcl, misc.logback, misc.lang3, hibernate.em, misc.guava
+    testCompile testing.junit
+
+    compileOnly misc.lombok
+    annotationProcessor misc.lombok
+    testAnnotationProcessor misc.lombok
+    testCompileOnly misc.lombok
 }
 
 jar {
