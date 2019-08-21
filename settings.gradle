@@ -141,6 +141,9 @@ include 'chapter13:junit5-test'
 include 'chapter14:base-groovy'
 include 'chapter14:groovy-spring'
 
+//应用程序监控
+include 'chapter15:jmx'
+
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
     project.buildFileName = "${project.name}.gradle"

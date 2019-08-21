@@ -19,7 +19,7 @@ https://github.com/Apress/pro-spring-5
 - [12 Spring远程处理](#Chapter12-Spring-Remoting)...........................................[Remoting](./chapter12)
 - [13 Spring测试](#Chapter13-Spring-Test) ...........................................[Test](./chapter13)
 - [14 Spring中脚本支持](#Chapter14-Spring-Script) ...........................................[Script](./chapter14)
-- [15 应用程序监控]()
+- [15 应用程序监控](#Chapter15-Application-Monitoring) ...........................................[Monitoring](./chapter15)
 - [16 Web应用程序]()
 - [17 WebSocket]()
 - [18 Spring项目：批处理、集成和XD等]()
@@ -580,4 +580,16 @@ Groovy提供了一个简化的编程模型，并支持特定与领域语言（DS
     * 在方法中，关键字return可选
     * 所有方法和类默认都为公共的
     * 在一个类中，Groovy会为声明的属性自动生成getter/setter方法。访问属性还可以不需要get/set前缀
-* [闭包](https://www.groovy-lang.org/closures.html)的支持
+* [闭包](https://www.groovy-lang.org/closures.html)的支持  
+
+
+## Chapter15-Application-Monitoring  
+&nbsp;&nbsp;&nbsp;&nbsp;在Java应用程序中，各个区域都可能会导致性能问题或服务器资源（如CPU、内存或IO）过载。例如，Java代码效率低下、**内存泄漏（比如，在不释放引用的情况下继续分配新对象的Java代码，并且阻止底层JVM在垃圾收集过程中释放内存）**、错误计算的JVM参数、错误计算的线程池参数、过多的数据源配置（例如，允许的并发数据库连接太多）、不正确的数据库设置以及长时间运行的SQL查询。  
+&nbsp;&nbsp;&nbsp;&nbsp;在Java中很多工具可以帮助监控JEE应用程序的详细运行时行为，它们中的大多数都建立在Java管理扩展（Java Management Extensions,JMX）技术之上。
+* JMX的Spring支持：Spring对JMX的全面支持，使用JMX工具公开用于监控的Spring bean。使用Java可执行文件[jvisualvm](https://visualvm.github.io/?Java_VisualVM)作为应用程序监控工具
+* 监控Hibernate统计信息：Hibernate和许多其他包为使用JMX公开操作状态和性能指标提供了支持类和基础结构。在Spring驱动的JEE应用程序中启用那些常用组件的JMX监控  
+* Spring Boot JMX支持：Spring Boot为JMX支持提供了一个启动器库，该库提供了全新的默认配置
+
+### Spring中的JMX支持  
+&nbsp;&nbsp;&nbsp;&nbsp;在JMX中，用于公开JMX监控和管理的类被称为*托管bean*(MBean)。Spring支持多种公开MBean的机制。如，将Spring bean（被开发为简单的POJO）公开为MBean，从而进行JMX监控。  
+
