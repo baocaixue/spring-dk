@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.isaac.ch15.AppStatistics;
 import com.isaac.ch15.AppStatisticsImpl;
+import com.isaac.ch15.CustomStatistics;
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.persistence.EntityManagerFactory;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -58,7 +61,19 @@ public class WebConfig implements WebMvcConfigurer {
         MBeanExporter exporter = new MBeanExporter();
         Map<String, Object> beans = new HashMap<>();
         beans.put("bean:name=SpringDKSingerApp", appStatisticsBean());
+        beans.put("bean:name=SpringDKSingerAppHibernate", statisticsBean());
         exporter.setBeans(beans);
         return exporter;
+    }
+
+    //Hibernate JMX
+    @Bean
+    public CustomStatistics statisticsBean() {
+        return new CustomStatistics();
+    }
+
+    @Bean
+    public SessionFactory sessionFactory(EntityManagerFactory entityManagerFactory) {
+        return entityManagerFactory.unwrap(SessionFactory.class);
     }
 }

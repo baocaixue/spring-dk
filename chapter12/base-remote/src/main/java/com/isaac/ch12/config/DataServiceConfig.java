@@ -50,9 +50,11 @@ public class DataServiceConfig {
         hibernateProp.put("hibernate.max_fetch_depth", 3);
         hibernateProp.put("hibernate.jdbc.batch_size", 10);
         hibernateProp.put("hibernate.jdbc.fetch_size", 50);
-
+        //启用Hibernate JMX行为
         hibernateProp.put("hibernate.jmx.enabled", true);
+        //指示Hibernate为其JPA持久化提供程序生成统计信息
         hibernateProp.put("hibernate.generate_statistics", true);
+        //Hibernate统计信息MBean所需的会话工厂
         hibernateProp.put("hibernate.session_factory_name", "sessionFactory");
         return hibernateProp;
     }
