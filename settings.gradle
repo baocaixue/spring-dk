@@ -143,6 +143,8 @@ include 'chapter14:groovy-spring'
 
 //应用程序监控
 include 'chapter15:jmx'
+include 'chapter15:boot-jmx'
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
