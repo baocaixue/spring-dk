@@ -20,7 +20,7 @@ https://github.com/Apress/pro-spring-5
 - [13 Spring测试](#Chapter13-Spring-Test) ...........................................[Test](./chapter13)
 - [14 Spring中脚本支持](#Chapter14-Spring-Script) ...........................................[Script](./chapter14)
 - [15 应用程序监控](#Chapter15-Application-Monitoring) ...........................................[Monitoring](./chapter15)
-- [16 Web应用程序]()
+- [16 Web应用程序](#Chapter16-Web) ...........................................[Web](./chapter16)
 - [17 WebSocket]()
 - [18 Spring项目：批处理、集成和XD等]()
 
@@ -582,6 +582,7 @@ Groovy提供了一个简化的编程模型，并支持特定与领域语言（DS
     * 在一个类中，Groovy会为声明的属性自动生成getter/setter方法。访问属性还可以不需要get/set前缀
 * [闭包](https://www.groovy-lang.org/closures.html)的支持  
 
+*** 
 
 ## Chapter15-Application-Monitoring  
 &nbsp;&nbsp;&nbsp;&nbsp;在Java应用程序中，各个区域都可能会导致性能问题或服务器资源（如CPU、内存或IO）过载。例如，Java代码效率低下、**内存泄漏（比如，在不释放引用的情况下继续分配新对象的Java代码，并且阻止底层JVM在垃圾收集过程中释放内存）**、错误计算的JVM参数、错误计算的线程池参数、过多的数据源配置（例如，允许的并发数据库连接太多）、不正确的数据库设置以及长时间运行的SQL查询。  
@@ -593,3 +594,13 @@ Groovy提供了一个简化的编程模型，并支持特定与领域语言（DS
 ### Spring中的JMX支持  
 &nbsp;&nbsp;&nbsp;&nbsp;在JMX中，用于公开JMX监控和管理的类被称为*托管bean*(MBean)。Spring支持多种公开MBean的机制。如，将Spring bean（被开发为简单的POJO）公开为MBean，从而进行JMX监控。  
 
+
+***
+
+## Chapter16-Web  
+&nbsp;&nbsp;&nbsp;&nbsp;主题内容如下：
+* Spring MVC：WebApplicationContext层次结构以及处理生命周期
+* 国际化（i18n）语言环境和主题
+* 视图和Ajax支持
+* 分页和文件上传支持：浏览基于网格数据时使用Spring Data JPA和前端JQuery组件提供分页支持。
+* 安全性：Spring Security保护应用程序并处理登录和注销

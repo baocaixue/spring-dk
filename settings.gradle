@@ -145,6 +145,9 @@ include 'chapter14:groovy-spring'
 include 'chapter15:jmx'
 include 'chapter15:boot-jmx'
 
+//Web应用程序
+include 'chapter16:singer-webapp'
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
