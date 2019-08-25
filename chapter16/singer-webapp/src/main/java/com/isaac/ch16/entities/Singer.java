@@ -28,12 +28,12 @@ public class Singer implements Serializable {
     @Column(name = "VERSION")
     private Integer version;
 
-    @NotEmpty(message = "{validation.firstname.NotEmpty.message}")
+    //@NotEmpty(message = "{validation.firstname.NotEmpty.message}")
     @Size(min = 3, max = 60, message = "{validation.firstname.Size.message}")
     @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @NotEmpty(message = "{validation.lastname.NotEmpty.message}")
+    //@NotEmpty(message = "{validation.lastname.NotEmpty.message}")
     @Size(min = 1, max = 40, message = "{validation.lastname.Size.message}")
     @Column(name = "LAST_NAME")
     private String lastName;
@@ -49,7 +49,7 @@ public class Singer implements Serializable {
     @Column(name = "PHOTO")
     private byte[] photo;
 
-    @Transient
+    //@Transient
     public String getBirthDateString(){
         return Optional.ofNullable(this.birthDate).map(LocalDate::toString).orElse("");
     }
