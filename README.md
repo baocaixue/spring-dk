@@ -603,4 +603,88 @@ Groovy提供了一个简化的编程模型，并支持特定与领域语言（DS
 * 国际化（i18n）语言环境和主题
 * 视图和Ajax支持
 * 分页和文件上传支持：浏览基于网格数据时使用Spring Data JPA和前端JQuery组件提供分页支持。
-* 安全性：Spring Security保护应用程序并处理登录和注销
+* 安全性：Spring Security保护应用程序并处理登录和注销  
+
+### MVC和Spring MVC  
+#### MVC介绍  
+&nbsp;&nbsp;&nbsp;&nbsp;MVC是实现应用程序表示层的常用模式。MVC模式的主要原则是为不同组件定义具有明确责任的架构。顾名思义，MVC模式中有三个参与者。  
+* **模型（Model）**：模型表示业务数据以及用户上下文中应用程序的“状态”。
+* **视图（View）**：以所需格式向用户呈现数据，支持与用户交互，并支持客户端验证、国际化、样式等。
+* **控制器（Controller）**：控制器处理前端用户执行操作的请求、与服务层交互、更新模型以及根据执行结果将用户引导至适当的视图。  
+&nbsp;&nbsp;&nbsp;&nbsp;常见的视图请求处理过程如下所示：  
+（1） **请求**：将请求提交给服务器。在服务器端，大多数框架（例如Spring MVC或Struts）都有一个调度程序（以servlet的形式）来处理请求。  
+（2） **调用**：调度程序根据HTTP请求信息和Web应用程序配置将请求分派给适当的控制器。  
+（3） **服务调用**：控制器与服务层交互。  
+（4） **填充模型**：控制器使用从服务层获得的信息填充模型。  
+（5） **创建视图**：根据模型创建视图。  
+（6） **响应**：控制器将相应的视图返回给用户。  
+&nbsp;&nbsp;&nbsp;&nbsp;另外，在视图中，将会发生Ajax调用。例如，假设用户浏览网格中的数据，当用户点击下一页时，并不是刷新整个页面，而是发生了以下事件：  
+（a） **请求**：准备XMLHttpRequest并提交给服务器。调度程序将请求发送给相应的控制器。  
+（b） **响应**：控制器与服务层交互，响应数据将被格式化发送到浏览器。此时并不涉及任何视图。浏览器结束数据并对现有视图进行部分更新。  
+
+#### Spring MVC WebApplicationContext层次结构  
+&nbsp;&nbsp;&nbsp;&nbsp;在Spring MVC中，**DispatcherServlet**是接收请求并将它们分发给响应控制器的中央servlet。在Spring MVC应用程序中，可以有多种用于不同目（例如，处理用户界面请求和RESTful-WS请求）的DispatcherServlet实例，并且每个DispatcherServlet都有自己的WebApplicationContext配置，该配置定义了servlet级别的特性，例如支持servlet的控制器、处理映射、视图解析、国际化、主题、验证以及类型转换和格式化。  
+&nbsp;&nbsp;&nbsp;&nbsp;在servlet级别的WebApplicationContext配置下，Spring MVC维护者一个根WebApplicationContext，其中包含应用程序级别的配置，例如后端数据源、安全性以及服务和持久层的配置。根WebApplicationContext可以供所有servlet级别的WebApplicationContext使用。  
+
+#### Spring MVC请求生命周期  
+&nbsp;&nbsp;&nbsp;&nbsp;在SpringMVC处理请求的过程中，涉及了一系列的组件。下面是这些主要组件的用途：  
+* **过滤器**：过滤器适用于所有请求。  
+* **调度程序servlet**：该servlet分析请求并将它们分发给响应的控制器进行处理（DispatcherServlet是Front Controller设计模式的一种表示）。
+* **通用服务**：服用服务将被应用于每个请求，以提供包括国际化、主题、文件上传等支持。它们的配置在DispatcherServlet的WebApplicationContext中定义。
+* **处理映射**：将传入的请求映射到处理程序（即Spring MVC控制器类中的方法）。自Spring2.5以来，在大多数情况下，都不需要进行配置，因为Spring MVC会自动注册一个HandlerMapping实现，该实现通过@RequestMapping注解在控制器类中的类型或方法级别上表示的HTTP路径来映射处理程序。  
+* **处理程序拦截器**：在Spring MVC中，可以为处理程序注册拦截器，以便实现通用检查或逻辑。
+* **处理程序异常解析器**：在Spring MVC中，**HandlerExceptionResolver**接口（在org.springframework.web.servlet包中定义）用于处理请求处理期间抛出的异常。默认情况下，DispatcherServlet注册了*DefaultHandlerExceptionResolver*类（来自org.springframework.web.servlet.mvc.support包）。该解析器通过设置特定的响应状态码来处理某些标准的Spring MVC异常。也可以通过使用@ExceptionHandler注解控制器方法并传入异常类型作为属性来实现自己的异常处理程序。
+* **视图解析**：Spring MVC的ViewResolver接口（来自org.springframework.web.servlet包）支持基于控制器返回的逻辑名称的视图解析。有许多实现类支持各种视图解析机制。例如，UrlBasedViewResolver类支持将逻辑名直接解析为URL。ContentNegotiatingViewResolver类可以根据客户端支持的媒体类型（如XML、PDF和JSON）动态解析视图。还有一些实现可以集成不同的视图技术，例如FreeMarker（FreeMarkerViewResolver）、Velocity（VelocityViewResolver）和JasperReports（JasperReportsViewResolver）。  
+
+
+#### Spring MVC配置  
+&nbsp;&nbsp;&nbsp;&nbsp;要在Web应用程序中启用Spring MVC，需要一些初始配置，特别是对于Web部署描述符文件wen.xml。自Spring3.1以来，就支持在Servlet 3.0容器中进行基于代码的配置。  
+&nbsp;&nbsp;&nbsp;&nbsp;要为Web应用程序配置Spring MVC支持，需要在Web部署描述符中完成以下配置：  
+* 配置根WebApplicationContext
+* 配置Spring MVC所需的servlet过滤器
+* 在应用程序内配置调度程序servlet  
+```java
+public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    /**
+    * 使用返回的配置类创建AnnotationConfigWebApplicationContext类型的根应用程序上下文 
+    */
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class<?>[]{DataServiceConfig.class};
+    }
+    
+    /**
+    * 使用返回的配置类创建AnnotationConfigWebApplicationContext类型的Web应用程序上下文
+    */
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class<?>[]{WebConfig.class};//DispatcherServlet
+    }
+    
+    /**
+    * DispatcherServlet的映射（上下文）由此方法返回的字符串数组指定的 
+    */
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
+    
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter cef = new CharacterEncodingFilter();
+        cef.setEncoding("UTF-8");
+        cef.setForceEncoding(true);
+        return new Filter[]{new HiddenHttpMethodFilter(), cef};
+    }
+}
+```  
+&nbsp;&nbsp;&nbsp;&nbsp;要使用基于代码的配置，必须开发实现了org.springframework.web.WebApplicationInitializer接口的类(AbstractAnnotationConfigDispatcherServletInitializer)。  
+&nbsp;&nbsp;&nbsp;&nbsp;实现了WebApplicationInitializer接口的类接口的所有类都将被org.springframework.web.SpringServletContainerInitializer（实现了Servlet3.0的javax.servlet.ServletContainerInitializer接口）自动检测到，该类可以在任何Servlet3.0容器中自动启动。  
+&nbsp;&nbsp;&nbsp;&nbsp;前面的配置忽略了安全过滤器，因为可以使用个一个专门的Spring类完成安全过滤：  
+```java
+public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer{
+    
+}
+```  
+&nbsp;&nbsp;&nbsp;&nbsp;通过扩展了AbstractSecurityWebApplicationInitializer的空类，可以告诉Spring希望启用DelegatingFilterProxy，所以springSecurityFilterChain将在注册任何javax.servlet.Filter之前调用。  
+而对于DispatcherServlet的详细信息，参见[WebConfig](./chapter16/singer-webapp/src/main/java/com/isaac/ch16/config/WebConfig.java)
