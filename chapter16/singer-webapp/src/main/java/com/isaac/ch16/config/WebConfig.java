@@ -14,6 +14,9 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.theme.CookieThemeResolver;
 import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
 
 import java.util.Locale;
 
@@ -51,17 +54,17 @@ public class WebConfig implements WebMvcConfigurer {
        registry.addViewController("/").setViewName("singers/list");
     }
 
-    /**
-     * 将符号视图名称与/WEB-INF/views下的*.jspx模板相匹配
-     */
-    @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/views");
-        resolver.setSuffix(".jspx");
-        resolver.setRequestContextAttribute("requestContext");
-        return resolver;
-    }
+//    /**
+//     * 将符号视图名称与/WEB-INF/views下的*.jspx模板相匹配 !!!Tiles替换它
+//     */
+//    @Bean
+//    public InternalResourceViewResolver viewResolver() {
+//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+//        resolver.setPrefix("/WEB-INF/views");
+//        resolver.setSuffix(".jspx");
+//        resolver.setRequestContextAttribute("requestContext");
+//        return resolver;
+//    }
 
     @Override
     public Validator getValidator() {
@@ -147,5 +150,26 @@ public class WebConfig implements WebMvcConfigurer {
         cookieThemeResolver.setCookieMaxAge(3600);
         cookieThemeResolver.setCookieName("theme");
         return cookieThemeResolver;
+    }
+
+    /**
+     * Spring MVC对Tiles提供支持bean
+     */
+    @Bean
+    public UrlBasedViewResolver tilesViewResolver() {
+        UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
+        tilesViewResolver.setViewClass(TilesView.class);
+        return tilesViewResolver;
+    }
+
+    /**
+     * 提供Tiles所需布局配置
+     */
+    @Bean
+    public TilesConfigurer tilesConfigurer() {
+        TilesConfigurer tilesConfigurer = new TilesConfigurer();
+        tilesConfigurer.setDefinitions("/WEB-INF/layouts/layouts.xml", "/WEB-INF/views/**/views.xml");
+        tilesConfigurer.setCheckRefresh(true);
+        return tilesConfigurer;
     }
 }
