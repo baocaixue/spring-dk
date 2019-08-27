@@ -4,12 +4,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.theme.CookieThemeResolver;
+import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.Locale;
@@ -67,7 +70,18 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        //国际化拦截器
         registry.addInterceptor(localeChangeInterceptor());
+        //主题拦截器
+        registry.addInterceptor(themeChangeInterceptor());
+    }
+
+    /**
+     * 拦截每个更改主题的请求
+     */
+    @Bean
+    public ThemeChangeInterceptor themeChangeInterceptor() {
+        return new ThemeChangeInterceptor();
     }
 
     /**
@@ -113,5 +127,25 @@ public class WebConfig implements WebMvcConfigurer {
         cookieLocaleResolver.setCookieMaxAge(3600);
         cookieLocaleResolver.setCookieName("locale");
         return cookieLocaleResolver;
+    }
+
+    /**
+     * 加载活动主题bean
+     */
+    @Bean
+    public ResourceBundleThemeSource themeSource() {
+        return new ResourceBundleThemeSource();
+    }
+
+    /**
+     * 解析用户活动主题bean
+     */
+    @Bean
+    public CookieThemeResolver themeResolver() {
+        CookieThemeResolver cookieThemeResolver = new CookieThemeResolver();
+        cookieThemeResolver.setDefaultThemeName("standard");
+        cookieThemeResolver.setCookieMaxAge(3600);
+        cookieThemeResolver.setCookieName("theme");
+        return cookieThemeResolver;
     }
 }
