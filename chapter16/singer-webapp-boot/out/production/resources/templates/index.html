@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../public/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+
+    <title>
+        Singer Boot Application
+    </title>
+
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: header}">Header</div>
+<div class="container">
+    <div class="text-left">
+
+        <h1>Singer Management Boot & Thymeleaf Application</h1>
+
+        <div class="lead">
+           WelCome
+        </div>
+
+        <div th:insert="~{fragments/footer :: footer}">&copy; footer demo</div>
+    </div>
+</div>
+</body>
+</html>
