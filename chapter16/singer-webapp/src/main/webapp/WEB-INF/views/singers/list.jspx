@@ -10,34 +10,54 @@
     <spring:message code="label_singer_first_name" var="labelSingerFirstName"/>
     <spring:message code="label_singer_last_name" var="labelSingerLastName"/>
     <spring:message code="label_singer_birth_date" var="labelSingerBirthDate"/>
+    <spring:url value="/singers" var="showSingerUrl"/>
 
-    <!--<head>-->
-        <!--<spring:theme code="styleSheet" var="app_css"/>-->
-        <!--<spring:url value="/${app_css}" var="app_css_url"/>-->
-        <!--<link rel="stylesheet" type="text/css" media="screen" href="${app_css_url}"/>-->
-    <!--</head>-->
+    <script type="text/javascript">
+        $(function(){
+            $("#list").jqGrid({
+                url:'${showSingerUrl}/listgrid',
+                datatype: 'json',
+                mtype: 'GET',
+                colNames:['${labelSingerFirstName}', '${labelSingerLastName}',
+                    '${labelSingerBirthDate}'],
+                colModel :[
+                    {name:'firstName', index:'firstName', width:150},
+                    {name:'lastName', index:'lastName', width:100},
+                    {name:'birthDateString', index:'birthDate', width:100}
+                ],
+                jsonReader : {
+                    root:"singerData",
+                    page: "currentPage",
+                    total: "totalPages",
+                    records: "totalRecords",
+                    repeatitems: false,
+                    id: "id"
+                },
+                pager: '#pager',
+                rowNum:10,
+                rowList:[10,20,30],
+                sortname: 'firstName',
+                sortorder: 'asc',
+                viewrecords: true,
+                gridview: true,
+                height: 250,
+                width: 500,
+                caption: '${labelSingerList}',
+                onSelectRow: function(id){
+                    document.location.href ="${showSingerUrl}/" + id;
+                }
+            });
+        });
+    </script>
 
-    <h1>${labelSingerList}</h1>
-
-    <c:if test="${not empty singers}">
-        <table>
-            <thead>
-                <tr>
-                    <th>${labelSingerFirstName}</th>
-                    <th>${labelSingerLastName}</th>
-                    <th>${labelSingerBirthDate}</th>
-                </tr>
-
-            </thead>
-            <tbody>
-                <c:forEach items="${singers}" var="singer">
-                    <tr>
-                        <td>${singer.firstName}</td>
-                        <td>${singer.lastName}</td>
-                        <td>${singer.birthDate}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+    <c:if test="${not empty message}">
+        <div id="message" class="${message.type}">${message.message}</div>
     </c:if>
+
+    <h2>${labelSingerList}</h2>
+
+    <div>
+        <table id="list"><tr><td/></tr></table>
+    </div>
+    <div id="pager"></div>
 </div>

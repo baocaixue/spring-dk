@@ -17,7 +17,7 @@
     <spring:url value="/${app_css}" var="app_css_url" />
     <link rel="stylesheet" type="text/css" media="screen" href="${app_css_url}" />
 
-    <spring:url value="/resources/scripts/jquery-1.12.4.js" var="jquery_url" />
+    <spring:url value="/resources/scripts/jquery-1.12.4.min.js" var="jquery_url" />
     <spring:url value="/resources/scripts/jquery-ui.min.js"
                 var="jquery_ui_url" />
     <spring:url value="/resources/styles/custom-theme/jquery-ui.theme.min.css"

@@ -60,7 +60,7 @@ public class WebConfig implements WebMvcConfigurer {
 //    @Bean
 //    public InternalResourceViewResolver viewResolver() {
 //        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//        resolver.setPrefix("/WEB-INF/views");
+//        resolver.setPrefix("/WEB-INF/views/");
 //        resolver.setSuffix(".jspx");
 //        resolver.setRequestContextAttribute("requestContext");
 //        return resolver;
