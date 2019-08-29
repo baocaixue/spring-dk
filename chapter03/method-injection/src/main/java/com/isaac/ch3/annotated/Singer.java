@@ -2,10 +2,6 @@ package com.isaac.ch3.annotated;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-/**
- * Created by iuliana.cosmina on 2/20/17.
- */
 @Component("singer")
 @Scope("prototype")
 public class Singer {
