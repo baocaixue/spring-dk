@@ -21,7 +21,7 @@ https://github.com/Apress/pro-spring-5
 - [14 Spring中脚本支持](#Chapter14-Spring-Script) ...........................................[Script](./chapter14)
 - [15 应用程序监控](#Chapter15-Application-Monitoring) ...........................................[Monitoring](./chapter15)
 - [16 Web应用程序](#Chapter16-Web) ...........................................[Web](./chapter16)
-- [17 WebSocket]()
+- [17 WebSocket](#Chapter17-WebSocket) ...........................................[WebScket](./chapter17)
 - [18 Spring项目：批处理、集成和XD等]()
 
 ****
@@ -687,4 +687,27 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 }
 ```  
 &nbsp;&nbsp;&nbsp;&nbsp;通过扩展了AbstractSecurityWebApplicationInitializer的空类，可以告诉Spring希望启用DelegatingFilterProxy，所以springSecurityFilterChain将在注册任何javax.servlet.Filter之前调用。  
-而对于DispatcherServlet的详细信息，参见[WebConfig](./chapter16/singer-webapp/src/main/java/com/isaac/ch16/config/WebConfig.java)
+而对于DispatcherServlet的详细信息，参见[WebConfig](./chapter16/singer-webapp/src/main/java/com/isaac/ch16/config/WebConfig.java)  
+
+***  
+
+## Chapter17-WebSocket   
+&nbsp;&nbsp;&nbsp;&nbsp;HTML5 WebSocket规范定义了一个使网页能够使用WebSocket协议与远程主机进行双向通信的API。  
+* WebSocket介绍：对[WebSocket](http://www.websocket.org/)协议（RFC-6455）的介绍
+* 与Spring一起使用WebSocket：使用Spring的WebSocket API、利用SockJS作为支持非WebSocket的浏览器的后备选项，使用SockJS/WebSocket通过STOMP（简单（或流式）的面向文本的消息协议）发送消息  
+
+
+### WebSocket介绍  
+&nbsp;&nbsp;&nbsp;&nbsp;WebSocket是作为HTML5计划的一部分而开发的一种规范，*可以实现在客户端和服务器之间发送消息的双向单套接字连接*。过去，需要实时更新功能的Web应用程序会通过打开多个连接或使用长轮询来定期沦胥服务器端组件以获取更新数据。  
+&nbsp;&nbsp;&nbsp;&nbsp;使用WebSocket进行双向通信可以避免对客户端和HTTP服务器之间的双向通信执行HTTP轮询。WebSocket协议旨在取代所有现有的使用HTTP作为传输的双向通信方法。WebSocket的单套接字模型产生了一个更简单的解决方案，能避免每个客户端需要多个连接并减少开销。如，不需要为每个消息发送一个HTTP头。  
+&nbsp;&nbsp;&nbsp;&nbsp;WebSocket在初始握手期间使用HTTP，这反过来又允许在标准HTTP（80）和HTTPS（443）端口上使用它。WebSocket规范定义了ws://和wss://方案来指示不安全和安全的连接。WebSocket协议有两部分：首先是客户端和服务端之间的握手，然后是传输数据。WebSocket连接是在客户端和服务端之间的初始握手期间，通过在相同的底层TCP/IP连接上发出从HTTP到WeScoket协议的升级请求来建立的。在通信的数据传输部分，客户端和服务器都可以同时向对方发送消息。  
+
+### Spring与WebSocket  
+&nbsp;&nbsp;&nbsp;&nbsp;从4.0版本开始，Spring框架支持WebSocket样式的消息传递以及STOMP作为应用程序级别的子协议。在框架内，可以在spring-websocket模块中找到对WebSocket的支持，该模块与JSR-356（Java WebSocket）兼容。  
+&nbsp;&nbsp;&nbsp;&nbsp;但是，并不是所有的Web浏览器都支持该协议的。所以，Spring通过SockJS协议提供了透明的后备选项。  
+&nbsp;&nbsp;&nbsp;&nbsp;与基于REST的应用程序（在这些应用程序中，**服务由不同的URL表示**）不同，*WebSocket使用单个URL来建立初始握手，并在同一连接上执行数据流*。这种类型的消息传递功能更像传统的消息传递系统。从Spring Framework 4开始，基于消息的核心接口（如Message）已经从Spring Integration项目迁移到名为spring-messaging的新模块中，以支持WebSocket样式的消息应用程序。  
+&nbsp;&nbsp;&nbsp;&nbsp;当提到STOMP作为应用程序的子协议时，其实就是在讨论通过WebSocket传输的协议。WebSocket本身是一个简单的将字节转换为消息的低级协议。应用程序需要了解通过线路发送的内容，而这恰恰是诸如STOMP之类的子协议发挥作用的地方。在初始握手期间，客户端和服务器可以使用Sec-WebSocket-Protocol标头来定义要使用的子协议。虽然Spring框架提供了STOMP的支持，但是WebSocket并没有强制任何特定的东西。  
+
+### 使用WebSocket API  
+&nbsp;&nbsp;&nbsp;&nbsp;**WebSocket只是将字节转换为消息并在客户端和服务器之间传输它们**。这些消息仍然需要应用程序本身能够理解，而这恰恰是STOMP等子协议发挥作用的地方。如果想直接使用较低级别的WebSocket API，则Spring框架提供了一个可以与之交互的API。当使用Spring的WebSocket API时，通常需要实现WebSocketHandler接口或使用便利的子类（如用于处理二进制消息的BinaryWebSocketHandler、用于处理SockJS消息的SockJsWebSocketHandler或使用基于String消息的TestWebSocketHandler）。  
+

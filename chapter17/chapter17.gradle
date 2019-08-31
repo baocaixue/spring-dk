@@ -1,0 +1,31 @@
+subprojects {
+    group 'com.isaac.ch17'
+    apply plugin: 'java'
+
+    /*Task that copies all the dependencies under build/libs */
+    task copyDependencies(type: Copy) {
+        from configurations.compile
+        into 'build/libs'
+    }
+
+    dependencies {
+        if (!project.name.contains("boot")) {
+            if(project.name != 'websocket-api'){
+            compile (web.tomcatWsApi) {
+                exclude  module: 'tomcat-embed-core'
+            }
+            compile (web.tomcatWsEmbed) {
+                exclude  module: 'tomcat-embed-core'
+            }}
+            compile spring.context, spring.webSocket, spring.messaging, spring.webmvc, misc.slf4jJcl,
+                    misc.logback, misc.lang3, misc.jacksonDatabind, web.servlet, web.jstl
+
+        }
+        testCompile testing.junit
+
+        compileOnly misc.lombok
+        annotationProcessor misc.lombok
+        testAnnotationProcessor misc.lombok
+        testCompileOnly misc.lombok
+    }
+}
