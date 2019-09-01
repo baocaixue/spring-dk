@@ -154,6 +154,9 @@ include 'chapter17:websocket-api'
 include 'chapter17:socketjs'
 include 'chapter17:stomp'
 
+//Spring项目：批处理、集成和XD等
+include 'chapter18:batch'
+
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
