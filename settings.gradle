@@ -152,6 +152,7 @@ include 'chapter16:singer-webapp-boot'
 //WebSocket
 include 'chapter17:websocket-api'
 include 'chapter17:socketjs'
+include 'chapter17:stomp'
 
 
 //check if the modules have gradle configuration files
