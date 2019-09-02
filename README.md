@@ -717,3 +717,14 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 
 
 ## Chapter18-SpringProject  
+&nbsp;&nbsp;&nbsp;&nbsp;对Spring项目组合中的一些项目进行高级的概述，特别是Spring Batch、Integration、XD以及Spring Framework5中新增的一些功能。这里都是一些入门demo以及介绍，可以在http://spring.io/projects上查看Spring项目的完整列表。  
+* Spring Batch: Spring批处理框架的核心概念，包括为开发人员提供的内容，以及Spring Batch 3.0对新的JSR-352的支持
+* Spring Integration: 集成模式用于许多企业级应用程序，Spring Integration为实现这些模式提供强大的框架。这里以批处理示例为基础来演示如何使用Spring Integration作为启动批处理作业的工作流的一部分
+* Spring XD: Spring XD将许多现有的Spring项目联系在一起，为大数据应用程序提供统一且可扩展的系统。Spring XD是一个专注于数据摄取、实时分析、批处理和数据导出的分布式系统。这里的例子中演示如何在shell界面中借助简单的DSL，通过使用Spring XD来实现批处理和集成示例中的应用程序
+* Spring 5中引入的新功能: 包括通过集成Commons Logging桥接模块（被命名为spring-jcl而不是标准的Commons Logging，并且自动检测Log4j 2.x、SLF4J和JUL，而无需任何额外的桥梁）来解决日志混乱问题，添加候选组件索引（candidate component index）作为类路径扫描的替代方法，以及一些显著的改进。这里主要介绍以下三个改进：  
+    * 功能性Web框架：spring-webflux是spring-mvc的补充，并且建立在反应式基础之上。由于Reactive Streams API是Java9的官方组成部分，因此在实现了Reactive Streams API规范的[Project Reactor](http://projectreactor.io/)基础之上构建Spring Framework5流支持
+    * 与Java9的完全互操作性：Spring Framework RC3版本于2017年7月发布，并针对最新的JDK9候选版本进行了全面测试。Java9引入了不少有趣的功能，其中包括：Jigsaw项目/Java 模块化，支持HTTP2协议和WebSocket握手的新的HTTP客户端，改进的进程API，用于try-with-resources、钻石操作符（diamond operator）和接口私有方法等功能的改进语法，响应式编程的发布-订阅框架以及一组新的API。基本上只有两个与Spring相关的功能：JDK的模块化功能和响应式框架
+    * 完全支持JUnit 5 Jupiter：JUnit5的Jupiter编程和扩展模型在Spring Framework 5 中得到完全的支持，包括支持Spring TestContext框架中并行测试的执行  
+
+### Spring Batch  
+&nbsp;&nbsp;&nbsp;&nbsp;
