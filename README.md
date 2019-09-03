@@ -725,6 +725,3 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
     * 功能性Web框架：spring-webflux是spring-mvc的补充，并且建立在反应式基础之上。由于Reactive Streams API是Java9的官方组成部分，因此在实现了Reactive Streams API规范的[Project Reactor](http://projectreactor.io/)基础之上构建Spring Framework5流支持
     * 与Java9的完全互操作性：Spring Framework RC3版本于2017年7月发布，并针对最新的JDK9候选版本进行了全面测试。Java9引入了不少有趣的功能，其中包括：Jigsaw项目/Java 模块化，支持HTTP2协议和WebSocket握手的新的HTTP客户端，改进的进程API，用于try-with-resources、钻石操作符（diamond operator）和接口私有方法等功能的改进语法，响应式编程的发布-订阅框架以及一组新的API。基本上只有两个与Spring相关的功能：JDK的模块化功能和响应式框架
     * 完全支持JUnit 5 Jupiter：JUnit5的Jupiter编程和扩展模型在Spring Framework 5 中得到完全的支持，包括支持Spring TestContext框架中并行测试的执行  
-
-### Spring Batch  
-&nbsp;&nbsp;&nbsp;&nbsp;
