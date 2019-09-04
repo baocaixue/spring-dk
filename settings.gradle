@@ -157,6 +157,7 @@ include 'chapter17:stomp'
 //Spring项目：批处理、集成和XD等
 include 'chapter18:batch'
 include 'chapter18:batch-boot'
+include 'chapter18:webflux'
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
