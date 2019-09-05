@@ -38,6 +38,7 @@ ext {
     jQueryVersion = '3.2.1'
     twsVersion = '9.0.0.M22'
     lombokVersion = '1.18.8'
+    jsr310Version = '2.7.4'
 
     //persistency libraries
     hibernateVersion = '5.2.10.Final'
@@ -146,7 +147,8 @@ ext {
             jacksonDatabind: "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
             poi            : "org.apache.poi:poi:$poiVersion",
             io             : "commons-io:commons-io:2.5",
-            lombok         : "org.projectlombok:lombok:$lombokVersion"
+            lombok         : "org.projectlombok:lombok:$lombokVersion",
+            jsr310         : "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jsr310Version"
     ]
 
     web = [
