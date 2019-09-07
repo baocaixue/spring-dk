@@ -158,6 +158,7 @@ include 'chapter17:stomp'
 include 'chapter18:batch'
 include 'chapter18:batch-boot'
 include 'chapter18:webflux'
+include 'chapter18:webflux-boot'
 
 //check if the modules have gradle configuration files
 rootProject.children.each { project ->
